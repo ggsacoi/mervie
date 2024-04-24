@@ -1,0 +1,440 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+}
+.navbar {
+    z-index: 2;
+    top: 0;
+    position: fixed;
+    color: white;
+    display: flex;
+    width: 100%;
+    background-color: black;
+    height: 70px;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 2vh;
+    align-items: center;
+    padding-right: 4vw;
+    padding-left: 4vw;
+}
+
+.container {
+    max-width: 1200px;
+    width: 90%;
+    margin: auto;
+}
+/*home*/
+
+.showcase-area {
+    height: 50vh;
+    background: linear-gradient(rgba(240, 240, 240, 0.144),
+            rgba(255, 255, 255, 0.336)),
+        url("landscape_trees_silhouettes_lake_starry_sky_night_reflection_light_stars_dark_background_4k_hd_dark_background.jpg");
+        background-position: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.showcase-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 1.6rem;
+    row-gap: 20px;
+}
+
+.main-title {
+    text-transform: uppercase;
+    margin-top: 1.5em;
+    font-size: 3rem;
+    color: yellow;
+}
+
+.showcase-container p{
+    color: white;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5em 1.5em;
+    text-decoration: none;
+    border-radius: 50px;
+    cursor: pointer;
+    outline: none;
+    margin-top: 1em;
+    text-transform: uppercase;
+    font-weight: small;
+}
+
+.btn-primary {
+    color: #fff;
+    background: black;
+}
+
+.btn-primary:hover {
+    background: skyblue;
+    transition: background 0.3s ease-in-out;
+}
+
+/*categorie*/
+#Categorie {
+    background-color: skyblue;
+    padding-top: 30px;
+}
+
+#interface {
+    padding: 5rem 0 10rem 0;
+    background: url("pexels-elia-clerici-282848-912110.jpg");
+    align-items: center;
+}
+
+#interface h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    color: black;
+    font-weight: 700;
+}
+
+.food-container {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.food-container img {
+    display: block;
+    width: 100%;
+    margin: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    object-position: center;
+}
+
+.img-container {
+    margin: 0 1rem;
+    position: relative;
+}
+
+.img-content {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: 2;
+    text-align: center;
+    transition: all 0.3s ease-in-out 0.1s;
+}
+
+.img-content h3 {
+    color: #fff;
+    font-size: 2.2rem;
+}
+
+.img-content a {
+    font-size: 1.2rem;
+}
+
+.img-container::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.871);
+    opacity: 0;
+    z-index: 1;
+
+    transform: scaleY(0);
+    transform-origin: 100% 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.img-container:hover::after {
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+.img-container:hover .img-content {
+    opacity: 1;
+    top: 40%;
+}
+
+.food-menu-heading {
+    text-align: center;
+    font-size: 3.4rem;
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    padding: 7px;
+}
+
+.food-menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px 0px 30px 0px;
+}
+
+.food-menu-container img {
+    display: block;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: dashed greenyellow 4px;
+    box-shadow: darkblue;
+}
+
+.food-menu-item {
+    display: flex;
+    flex: 1 1 600px;
+    justify-content: space-evenly;
+    margin-bottom: 3rem;
+}
+
+.food-description {
+    margin: auto 1.5rem;
+}
+
+.font-title {
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #444;
+}
+
+.food-description p {
+    font-size: 1.4rem;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.food-description .food-price {
+    color: #117964;
+    font-weight: 700;
+}
+
+/*categorie*/
+
+#Categorie {
+    background: url("abstract-background-colorful-background-blue-background-2560x1440-8624.jpeg");
+    padding-top: 30px;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+/*projets*/
+
+#projets {
+    padding: 5rem 0;
+    background: url("getCroppedImage.jpg");
+    background-size: cover;
+    background-position: right;
+}
+
+.testimonial-title {
+    text-align: center;
+    font-size: 2.8rem;
+    color: black;
+    font-weight: 700;
+}
+
+.testimonial-container {
+    justify-content: center;
+    display: flex;
+    margin-top: 30px;
+    column-gap: 20px;
+}
+
+.Apps-options .checked {
+    color: #ff9529;
+}
+
+.Apps-options .testimonial-text {
+    margin: 1rem 0;
+    color: #444;
+}
+
+.Apps-options {
+    text-align: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    flex-direction: column;
+    row-gap: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    width: 374px;
+}
+
+.customer-photo img {
+    display: block;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.customer-photo p {
+    padding-top: 20px;
+}
+
+/*contact*/
+
+#contact {
+    padding: 5rem 0;
+    background: url("papers.co-mh74-raining-apple-store-newyork-at-night-dark-25-wallpaper.jpg");
+    min-height: 100vh;
+}
+
+.contact-container {
+    display: flex;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.contact-img {
+    width: 50%;
+}
+
+.contact-img img {
+    display: block;
+    height: 420px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 100%;
+    object-position: center;
+    object-fit: cover;
+}
+
+.recadrage {
+    object-position: top;
+}
+
+.form-container {
+    padding: 1rem;
+    width: 50%;
+    margin: auto;
+}
+
+.form-container input {
+    display: block;
+    width: 100%;
+    padding: 1rem 0;
+    box-shadow: none;
+    outline: none;
+    margin-bottom: 1rem;
+    color: #444;
+    font-weight: 500;
+    background: whitesmoke;
+    padding-left: 20px;
+    border: 1px solid;
+    border-radius: 10px;
+}
+
+.form-container textarea {
+    display: block;
+    width: 100%;
+    border: none;
+    display: block;
+    width: 100%;
+    padding: 1rem 0;
+    box-shadow: none;
+    outline: none;
+    margin-bottom: 1rem;
+    color: #444;
+    font-weight: 500;
+    background: whitesmoke;
+    padding-left: 20px;
+    border: 1px solid;
+    border-radius: 10px;
+    color: #444;
+    outline: none;
+    resize: none;
+}
+
+.form-container h2 {
+    font-size: 2.7rem;
+    color: black;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    margin-top: -1.2rem;
+}
+
+.form-container a {
+    font-size: 1.3rem;
+}
+
+a {
+    padding: 0px 15px 0px 15px;
+    color: white;
+}
+
+a:hover {
+    background-color: white;
+    border-radius: 3px;
+    color: black;
+}
+
+#click {
+    display: none;
+}
+
+.oui {
+    display: none;
+}
+
+#good {
+    width: 300px;
+    height: 70px;
+    border-radius: 35px;
+    background-color: blue;
+    color: white;
+}
+
+@media (max-width: 711px) {
+    .navi{
+        position: absolute;
+        flex-direction: column;
+        display: flex;
+        color: white;
+        top: 4vh;
+        left: -100%;
+        width: 75vw;
+        height: 100vh;
+        background-color: rgb(20, 20, 20);
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+
+     }
+
+     .oui {
+        display: block;
+        margin-right: 3vw;
+     }
+
+     a {
+        margin: 6vh 0px 6vh 0px;
+     }
+     #click:checked ~ .navi {
+        left: 0;
+     }
+}
