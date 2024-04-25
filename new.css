@@ -409,7 +409,7 @@ a:hover {
     color: white;
 }
 
-@media (max-width: 711px) {
+@media (max-width: 740px) {
     .navi{
         position: absolute;
         flex-direction: column;
