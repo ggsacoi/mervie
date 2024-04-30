@@ -447,3 +447,133 @@ a:hover {
         left: 0;
      }
 }
+
+@media (max-width: 500px) {
+    html {
+        width: --webkit-fill-available;
+    }
+    body {
+        width: 100%;
+        min-width: 100vw;
+        width: --webkit-fill-available;
+    } 
+    section {
+        width: 100%;
+        height: 100vh;
+        background-size: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .navbar {
+        position: fixed;
+        height: 5vh;
+        padding-right: 1vmin;
+        padding-left: 1vmin;
+        z-index: 2;
+        top: 0;
+    }
+    h1 {
+        justify-content: center;
+        width: min-content;
+        font-size: 3vw;
+    }
+    h2 {
+        font-size: 3vw;
+    }
+    .btn-primary{
+        font-size: 3vw;
+    }
+    .showcase-area {
+        justify-content: center;
+        align-items: center;
+    }
+    .showcase-container {
+        justify-content: center;
+        align-items: center;
+    }
+    p {
+      font-size: 3vw;
+      width: 70vw;
+    }
+    #interface {
+        flex-direction: column;
+    }
+
+    #Categorie {
+        flex-direction: column;
+
+    }
+    .food-menu-container {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100vw;
+    }
+
+    .food-container {
+        width: 100vw;
+    }
+
+    .food-menu-item {
+        height: 28vw;
+        width: 100vw;
+        margin-bottom: 0px;
+        flex: none;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+    .food-img {
+
+        width: 25vw;
+    }
+    .food-description {
+        width: 70vw;
+        border: hidden;
+        margin: 0px;
+    }
+    .food-menu-heading {
+        font-size: 7vw;
+    }
+    .food-titile {
+        font-size: 5vw;
+    }
+    .food-description p {
+        font-size: 3vw;
+        width: 50vw;
+    }
+    .food-img img {
+        width: 25vw;
+        height: 25vw;
+        border: hidden;
+    }
+
+    .Apps-options {
+        text-align: center;
+        padding: 2vw;
+        background-color: white;
+        border-radius: 10px;
+        flex-direction: column;
+        row-gap: 10px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        width: 165px;
+    }
+    .customer-photo p {
+        width: 25vw;
+    }
+
+    .testimonial-text {
+        width: 28vw;
+    }
+    .customer-photo img {
+        width: 28vw;
+        height: 28vw;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 50%;
+        margin: auto;
+        display: block;
+
+    }
+}
