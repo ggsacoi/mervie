@@ -325,7 +325,7 @@
 
 .contact-img img {
     display: block;
-    height: 420px;
+    height: auto;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     width: 100%;
@@ -446,16 +446,18 @@ a:hover {
      #click:checked ~ .navi {
         left: 0;
      }
+
+     .Apps-options {
+        
+        padding: 1vw;
+     }
 }
 
 @media (max-width: 500px) {
-    html {
-        width: --webkit-fill-available;
-    }
+
     body {
         width: 100%;
-        min-width: 100vw;
-        width: --webkit-fill-available;
+        max-width: 100vh;
     } 
     section {
         width: 100%;
@@ -474,10 +476,19 @@ a:hover {
         z-index: 2;
         top: 0;
     }
+   
+    .main-titile {
+        text-align: center;
+        text-transform: uppercase;
+        width: min-content;
+    }
+
     h1 {
         justify-content: center;
         width: min-content;
         font-size: 3vw;
+        text-transform: uppercase;
+        text-align: center;
     }
     h2 {
         font-size: 3vw;
@@ -492,6 +503,7 @@ a:hover {
     .showcase-container {
         justify-content: center;
         align-items: center;
+        text-align: center;
     }
     p {
       font-size: 3vw;
@@ -566,6 +578,10 @@ a:hover {
     .testimonial-text {
         width: 28vw;
     }
+    .testimonial-container {
+        margin-top: 6vw;
+        column-gap: 1vw;
+    }
     .customer-photo img {
         width: 28vw;
         height: 28vw;
@@ -575,5 +591,30 @@ a:hover {
         margin: auto;
         display: block;
 
+    }
+
+    .form-container h2 {
+        font-size: 100%;
+    }
+
+    .contact-img img {
+        height: auto;
+        border-radius: 50%;
+        border: solid 1px black;
+    }
+
+    .form-container input {
+        padding-left: 1px;
+        font-size: 1vh;
+        border-radius: 1vw;
+    }
+
+    .message {
+        font-size: 1vh;
+    }
+
+    .form-container textarea {
+        padding-left: 1px;
+        border-radius: 1vw;
     }
 }
