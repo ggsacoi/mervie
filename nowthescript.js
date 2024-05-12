@@ -22,3 +22,15 @@ sending.addEventListener("click",(e)=>{
       message => alert("message envoyer")
     );
 });
+
+document.getElementById("englishBtn").addEventListener("click", function() {
+  setTimeout(function() {
+    window.open("index.html", "_top");
+  }, 2000);
+});
+
+document.getElementById("btnFrançais").addEventListener("click", function() {
+  setTimeout(function() {
+    window.open("index1.html", "_top");
+  }, 2000);
+});
