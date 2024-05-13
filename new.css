@@ -581,14 +581,6 @@ a:hover {
         justify-content: center;
         align-items: center;
     }
-    .navbar {
-        position: fixed;
-        height: 70px;
-        padding-right: 1vmin;
-        padding-left: 1vmin;
-        z-index: 2;
-        top: 0;
-    }
 
     .main-titile {
         text-align: center;
