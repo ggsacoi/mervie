@@ -36,9 +36,8 @@
     border-radius: 50px 0 0 50px;
     justify-content: center;
     align-items: center;
-    background-color: red 0.00;
-  
   }
+  
   .toggle-label input[type=checkbox] { 
     opacity: 0;
     position: absolute;
@@ -560,8 +559,7 @@ a:hover {
      }
 
 
-     .Apps-options {
-        
+     .Apps-options { 
         padding: 1vw;
      }
 }
@@ -584,34 +582,20 @@ a:hover {
 
     .toggle-label {
         top: 40vh;
-        right: 0;
-        position: absolute;
-        display: flex;
         width: 100px;
         height: 33px;
         margin-top: 6px;
-        border: 1px ;
-        border-radius: 50px 0 0 50px;
-        justify-content: center;
-        align-items: center;
-        background-color: red 0.00;
-      
       }
       .toggle-label input[type=checkbox] { 
-        opacity: 0;
-        position: absolute;
+     
         width: 100px;
         height: 33px;
       }
       .toggle-label input[type=checkbox]+.back {
-        position: absolute;
         width: 100px;
         height: 33px;
         border-radius: 50px;
-        padding: 0, 1px, 0, 1px;
-        background: #000;
-        transition: background 150ms linear;
-        right: 0;  
+      
       }
       .toggle-label input[type=checkbox]:checked+.back {
         background: #000;
@@ -650,10 +634,6 @@ a:hover {
       }
     
       .toggle-label .label {
-        display: block;
-        position: absolute;
-        width: 50%;
-        color: #000;
         line-height: 25px;
         text-align: center;
         font-size: 0.6rem;
