@@ -25,12 +25,12 @@
 }
 
 .toggle-label {
-    top: 72px;
+    top: 70px;
     right: 0;
     position: absolute;
     display: flex;
-    width: 240px;
-    height: 110px;
+    width: 210px;
+    height: 70px;
     margin-top: 8px;
     border: 1px ;
     border-radius: 50px 0 0 50px;
