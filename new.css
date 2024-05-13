@@ -583,7 +583,7 @@ a:hover {
     }
     .navbar {
         position: fixed;
-        height: 5vh;
+        height: 70px;
         padding-right: 1vmin;
         padding-left: 1vmin;
         z-index: 2;
