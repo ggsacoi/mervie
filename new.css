@@ -656,8 +656,8 @@ a:hover {
         color: #000;
         line-height: 25px;
         text-align: center;
-        font-size: 0.3rem;
-        font-weight: 326;
+        font-size: 0.6rem;
+        font-weight: 600;
       }
       .toggle-label .label.on { left: 0px; width: 50%; height: 100%}
       .toggle-label .label.off { right: 0px; width: 50%; height: 100%;}
