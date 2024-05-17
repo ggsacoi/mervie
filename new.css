@@ -568,7 +568,7 @@ a:hover {
      }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 650px) {
 
     body {
         width: 100%;
@@ -585,7 +585,7 @@ a:hover {
     }
 
     .toggle-label {
-        top: 40vh;
+        top: 7.2vh;
         width: 100px;
         height: 33px;
         margin-top: 6px;
@@ -642,6 +642,7 @@ a:hover {
         text-align: center;
         font-size: 0.6rem;
         font-weight: 600;
+        align-content: center;
       }
       .toggle-label .label.on { left: 0px; width: 50%; height: 100%}
       .toggle-label .label.off { right: 0px; width: 50%; height: 100%;}
@@ -820,7 +821,7 @@ a:hover {
     content: "";
     width: 75px;
     height: 75px;
-    border: 5px solid #dddddd;
+    border: 5px solid #252525;
     border-top-color: red;
     border-radius: 50%;
     animation: loading 0.5s ease infinite;
