@@ -32,5 +32,15 @@ document.getElementById("englishBtn").addEventListener("click", function() {
 document.getElementById("btnFrançais").addEventListener("click", function() {
   setTimeout(function() {
     window.open("index1.html", "_top");
-  }, 2000);
+  }, 300);
+});
+
+window.addEventListener("load", () => {
+  const loader = document.querySelector(".loader");
+
+  loader.classList.add("loader--hidden");
+
+  loader.addEventListener("transitionend", () => {
+    document.body.removeChild(loader);
+  });
 });
