@@ -26,7 +26,7 @@ sending.addEventListener("click",(e)=>{
 document.getElementById("englishBtn").addEventListener("click", function() {
   setTimeout(function() {
     window.open("index.html", "_top");
-  }, 2000);
+  }, 300);
 });
 
 document.getElementById("btnFrançais").addEventListener("click", function() {
