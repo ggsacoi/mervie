@@ -682,9 +682,14 @@ a:hover {
     h2 {
         font-size: 3vw;
     }
-    .btn-primary {
-        font-size: 3vw;
+    .link-primary {
+        border-radius: 25px;
     }
+
+    .link-primary:hover {
+        border-radius: 25px;  
+    }
+
     .showcase-area {
         justify-content: center;
         align-items: center;
