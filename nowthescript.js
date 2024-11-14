@@ -43,8 +43,9 @@ window.addEventListener("load", () => {
   loader.addEventListener("transitionend", () => {
     document.body.removeChild(loader);
   });
+  const audio = document.querySelector('audio');
+  audio.play();
 });
-
 
   const audio = document.querySelector('audio');
   const controls = document.querySelector('.controls');

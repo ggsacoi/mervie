@@ -847,6 +847,13 @@ a:hover {
         height: 33px;
         width: 33px;
     }
+    .fa-play {
+        font-size: 1.3rem;
+    }
+    
+    .fa-pause {
+        font-size: 1.3rem;
+    }
 }
 
 .loader {
