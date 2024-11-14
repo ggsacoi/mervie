@@ -575,6 +575,29 @@ a:hover {
         padding: 0.5rem 0.5rem;
         border-radius: 25px;
      }
+
+     .controls {
+        position: fixed;
+        z-index: 5;
+        height: 60px;
+        width: 60px;
+        background-color: #00a651;
+        border: 2px solid black;
+        border-radius: 100px;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        bottom: 20px;
+        left: 20px;
+    }
+
+.fa-play {
+    font-size: 2rem;
+}
+
+.fa-pause {
+    font-size: 2rem;
+}
 }
 
 @media (max-width: 650px) {
@@ -819,6 +842,11 @@ a:hover {
         padding-left: 1px;
         border-radius: 1vw;
     }
+
+    .controls {
+        height: 33px;
+        width: 33px;
+    }
 }
 
 .loader {
@@ -857,4 +885,3 @@ a:hover {
       transform: rotate(1turn);
     }
   }
-  

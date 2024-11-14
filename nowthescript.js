@@ -44,3 +44,24 @@ window.addEventListener("load", () => {
     document.body.removeChild(loader);
   });
 });
+
+
+  const audio = document.querySelector('audio');
+  const controls = document.querySelector('.controls');
+  const playIcon = document.querySelector('.fa-play');
+  const pauseIcon = document.querySelector('.fa-pause');
+
+  document.addEventListener('DOMContentLoaded', () => {
+
+  controls.addEventListener('click', ()=>{
+  if (audio.paused) {
+    audio.play();
+    pauseIcon.style.display ='flex';
+    playIcon.style.display = 'none';
+  }else {
+    audio.pause();
+    playIcon.style.display ='flex';
+    pauseIcon.style.display = 'none';
+  };
+});
+});
