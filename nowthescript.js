@@ -45,12 +45,12 @@ window.addEventListener("load", () => {
   });
 });
 
-  const audio = document.querySelector('audio');
-  const controls = document.querySelector('.controls');
-  const playIcon = document.querySelector('.fa-play');
-  const pauseIcon = document.querySelector('.fa-pause');
-
   document.addEventListener('DOMContentLoaded', () => {
+    const audio = document.querySelector('audio');
+    const controls = document.querySelector('.controls');
+    const playIcon = document.querySelector('.fa-play');
+    const pauseIcon = document.querySelector('.fa-pause');
+  
     setTimeout(() =>{
       audio.play();
     }, 500);
