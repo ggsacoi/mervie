@@ -57,7 +57,7 @@ window.addEventListener("load", () => {
 
   controls.addEventListener('click', ()=>{
   if (audio.paused) {
-    audio.autoplay();
+    audio.play();
     pauseIcon.style.display ='flex';
     playIcon.style.display = 'none';
   }else {
