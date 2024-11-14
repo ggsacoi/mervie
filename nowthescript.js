@@ -44,7 +44,7 @@ window.addEventListener("load", () => {
     document.body.removeChild(loader);
   });
   const audio = document.querySelector('audio');
-  audio.autoplay();
+  audio.play();
 });
 
   const audio = document.querySelector('audio');
@@ -53,7 +53,7 @@ window.addEventListener("load", () => {
   const pauseIcon = document.querySelector('.fa-pause');
 
   document.addEventListener('DOMContentLoaded', () => {
-    audio.autoplay();
+    audio.play();
 
   controls.addEventListener('click', ()=>{
   if (audio.paused) {
@@ -65,5 +65,9 @@ window.addEventListener("load", () => {
     playIcon.style.display ='flex';
     pauseIcon.style.display = 'none';
   };
+
+  addEventListener('mousemove', () =>{
+    audio.play();
+  });
 });
 });
