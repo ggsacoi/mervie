@@ -53,6 +53,7 @@ window.addEventListener("load", () => {
   const pauseIcon = document.querySelector('.fa-pause');
 
   document.addEventListener('DOMContentLoaded', () => {
+    audio.autoplay();
 
   controls.addEventListener('click', ()=>{
   if (audio.paused) {
