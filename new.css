@@ -519,6 +519,7 @@ a:hover {
 
 #clickleave {
     display: none;
+}
 
     .controls {
         position: fixed;
@@ -541,7 +542,6 @@ a:hover {
 
 .fa-pause {
     font-size: 2rem;
-}
 }
 
 @media (max-width: 804px) {
