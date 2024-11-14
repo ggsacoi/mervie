@@ -51,7 +51,7 @@ window.addEventListener("load", () => {
   const pauseIcon = document.querySelector('.fa-pause');
 
   document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(function() {
+    document.setTimeout(() {
       audio.play();
     }, 500);
 
