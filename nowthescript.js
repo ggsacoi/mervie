@@ -44,7 +44,7 @@ window.addEventListener("load", () => {
     document.body.removeChild(loader);
   });
   const audio = document.querySelector('audio');
-  audio.play();
+  audio.autoplay();
 });
 
   const audio = document.querySelector('audio');
@@ -56,7 +56,7 @@ window.addEventListener("load", () => {
 
   controls.addEventListener('click', ()=>{
   if (audio.paused) {
-    audio.play();
+    audio.autoplay();
     pauseIcon.style.display ='flex';
     playIcon.style.display = 'none';
   }else {
