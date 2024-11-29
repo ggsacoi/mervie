@@ -50,8 +50,7 @@ window.addEventListener("load", () => {
     const controls = document.querySelector('.controls');
     const playIcon = document.querySelector('.fa-play');
     const pauseIcon = document.querySelector('.fa-pause');
-  
-    setTimeout(() =>{
+  setTimeout(() =>{
       audio.play();
     }, 500);
 

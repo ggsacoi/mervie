@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="new.css">
 </head>
 <body>
-  <audio class="musique" loop src="Mark Ronson - Uptown Funk (Official Video) ft. Bruno Mars.mp3"></audio>
+  <audio class="musique" autoplay  loop src="Mark Ronson - Uptown Funk (Official Video) ft. Bruno Mars.mp3"></audio>
   <button class="controls">
     <i class="fa-solid fa-play" style="display: none;"></i>
     <i class="fa-solid fa-pause"></i>
@@ -27,7 +27,7 @@
                 <a href="#home"><label></label>home</a>
                 <a href="#interface"><label></label>about</a>
                 <a href="#Categorie"><label></label>Categorie</a>
-                <a href="#projets"><label></label>services</a>
+                <a href="#review"><label></label>services</a>
                 <a href="#contact"><label></label>contact</a>
                 <input type="checkbox" id="clickleave">
                 <label for="clickleave" class="non">
@@ -38,11 +38,11 @@
               <input type='checkbox'/>
               <span class='back'>
               <span class='toggle'></span>
-              <span class='label on' id="englishBtn">ENGLISH</span>
-              <span class='label off' id="btnFrançais">FRANÇAIS</span>  
+              <span class='label on' id="englishBtn"><h5>ENGLISH</h5></span>
+              <span class='label off' id="btnFrançais"><h5>FRANÇAIS</h5></span>  
               </span>
             </label>
-        </div>
+          </div>
         <section class="showcase-area" id="home">
           <div class="showcase-container">
             <h1 class="main-title" id="title">COMPUTER DEVELOPEMENT</h1>
@@ -173,7 +173,6 @@
               You have a mobile game project of various types, whether puzzle or adventure; 
               this is possible but with a timeframe that may exceed several months.
               </p>
-      
             </div>
             <div class="Apps-options">
               <div class="customer-detail">
@@ -193,7 +192,6 @@
                   You have a project to create a social media, streaming, or relationship-type application;
                   this is possible, and prices can range from €500 to €5,000.
               </p>
-      
             </div>
             <div class="Apps-options">
               <div class="customer-detail">
@@ -213,7 +211,6 @@
               For creating an online store platform like Shopify, Amazon, or aiming to develop a SAAS,
               can be superior to a simple application.
               </p>
-      
             </div>
           </div>
         </section>
@@ -222,14 +219,15 @@
             <div class="contact-img">
               <img class="recadrage" decoding="async" src="1714619334642.jpg" alt=""/>
             </div>
-      
             <div class="form-container">
               <h2>Contact me</h2>
               <input placeholder="email" id="lemail" type="email">
               <textarea id="message" cols="30" rows="6" placeholder="message"></textarea>
-              <button id="envoi" type="button" href="#" class="link link-primary">send</button>
+              <button id="envoi" type="button" class="link link-primary">send</button>
+              <button class="launch">Play this game while I contact you</button>
             </div>
           </div>
+          <canvas class="game"></canvas>
         </section>
   <script src="https://smtpjs.com/v3/smtp.js"></script>
   <script src="nowthescript.js"></script>
@@ -243,5 +241,6 @@
 
   gtag('config', 'G-X8WFQVFS81');
 </script>
+<script src='jeux.js'></script>
 </body>
 </html>

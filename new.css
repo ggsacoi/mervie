@@ -114,6 +114,21 @@
     color: #000;
   }
 
+  h5 {
+    height: max-content;
+    width: max-content;
+  }
+  #englishBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+ #btnFrançais {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 .container {
     max-width: 1200px;
     width: 90%;
@@ -413,6 +428,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    display: flex;
 }
 
 .contact-container {
@@ -542,6 +558,32 @@ a:hover {
 
 .fa-pause {
     font-size: 2rem;
+}
+.launch {
+    font-size: 3rem;
+    color: white;
+    background-color: #000;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 10px;
+    margin-top: 5vh;
+}
+.launch:hover {
+    background-color: #00a651;
+    border: solid 2px ;
+    color: #000;
+}
+
+.game {
+    position: fixed;
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(0, 0, 0);
+    z-index: 5;
+    border: #fff solid 2px;
+    border-radius: 10px;
 }
 
 @media (max-width: 804px) {
@@ -848,11 +890,11 @@ a:hover {
         width: 33px;
     }
     .fa-play {
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
     
     .fa-pause {
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
 }
 
