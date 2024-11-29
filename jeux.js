@@ -118,8 +118,8 @@ function gameover() {
     context.fillText(`GAME OVER`, map.width/2-60, map.height/2);
     context.fillText(`clique sur R pour rejouer`, 20, map.height-40);
     context.fillText(`click on R to replay`, 20, map.height-20);
-    context.fillText(`presse sur S pour quitter`, map.width-380, map.height-40);
-    context.fillText(`press on S to quite`, map.width-330, map.height-20);
+    context.fillText(`presse sur S pour quitter`, map.width-230, map.height-40);
+    context.fillText(`press on S to quite`, map.width-230, map.height-20);
     cancelAnimationFrame(animationFrame);
 }
 function score() {
