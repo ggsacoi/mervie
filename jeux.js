@@ -1,5 +1,8 @@
 const launch = document.querySelector(".launch");
 const map = document.querySelector(".game");
+launch.addEventListener('click', ()=>{
+        map.style.display = "flex";
+});
 map.height = window.innerHeight/2;
 map.width = window.innerWidth/2;
 const context = map.getContext("2d");
@@ -115,13 +118,9 @@ function gameover() {
     context.fillText(`GAME OVER`, map.width/2-60, map.height/2);
     context.fillText(`clique sur R pour rejouer`, 20, map.height-40);
     context.fillText(`click on R to replay`, 20, map.height-20);
+    context.fillText(`presse sur S pour quitter`, map.width-380, map.height-40);
+    context.fillText(`press on S to quite`, map.width-330, map.height-20);
     cancelAnimationFrame(animationFrame);
-}
-
-function replay() {
-    context.fillStyle = 'white';
-    context.font = '20px Arial';
-    context.fillText(`REPLAY`, map.width-125, map.height-125);
 }
 function score() {
     context.fillStyle = 'white';
@@ -166,6 +165,11 @@ document.addEventListener('keydown', (e) => {
     }
     if(e.code == 'KeyR') {
        reloadAnimation();
+    }
+});
+document.addEventListener('keydown', (e) => {
+        if (e.code === 'KeyS') {
+        map.style.display = "none";
     }
 });
 initializeObstacles()

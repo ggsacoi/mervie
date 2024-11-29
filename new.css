@@ -576,7 +576,7 @@ a:hover {
 
 .game {
     position: fixed;
-    display: flex;
+    display: none;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -934,3 +934,11 @@ a:hover {
       transform: rotate(1turn);
     }
   }
+@media (max-width: 1260px) {
+    .game {
+        display: none;
+    }
+    .launch {
+        display: none;
+    }
+}
