@@ -25,11 +25,11 @@
               <i class="fa-solid fa-arrow-left"></i>
             </label>
             <nav class="navi">
+                <a href="#contact"><label></label>contact</a>
                 <a href="#home"><label></label>home</a>
                 <a href="#Mervie"><label></label>about</a>
                 <a href="#Categorie"><label></label>Categorie</a>
                 <a href="#projets"><label></label>services</a>
-                <a href="#contact"><label></label>contact</a>
                 <input type="checkbox" id="clickleave">
                 <label for="clickleave" class="non">
                   <i class="fa-solid fa-arrow-left"></i>
@@ -44,13 +44,28 @@
             </span>
          </label>
         </div>
-        <section class="showcase-area" id="home">
-            <div class="showcase-container">
-              <h1 class="main-title" id="title">Creation informatique</h1>
-              <p>specialiser dans tous les projets informatique de l'ordi au smartphone</p>
-              <a href="#Categorie" class="btn btn-primary">Catégorie</a>
+        <section id="contact">
+          <div class="contact-container container">
+            <div class="contact-img">
+              <img class="recadrage" decoding="async" src="1714619334642.jpg" alt=""/>
             </div>
-          </section>
+            <div class="form-container">
+              <h2>Contacter moi</h2>
+              <input placeholder="adresse mail" id="lemail" type="email">
+              <textarea id="message" cols="30" rows="6" placeholder="message"></textarea>
+              <button id="envoi" type="button" class="link link-primary">envoyer</button>
+              <button class="launch">joue a ce jeu pendant que je te contact</button>
+          </div>
+        </div>
+        <canvas class="game"></canvas>
+        </section>
+        <section class="showcase-area" id="home">
+          <div class="showcase-container">
+            <h1 class="main-title" id="title">Creation informatique</h1>
+            <p>specialiser dans tous les projets informatique de l'ordi au smartphone</p>
+            <a href="#Categorie" class="btn-alpha">Catégorie</a>
+          </div>
+        </section>
           <section id="Mervie">
             <h2>tous les types d'écrans</h2>
             <div class="screens-container container">
@@ -216,21 +231,6 @@
                 </p>
               </div>
             </div>
-          </section>
-          <section id="contact">
-            <div class="contact-container container">
-              <div class="contact-img">
-                <img class="recadrage" decoding="async" src="1714619334642.jpg" alt=""/>
-              </div>
-              <div class="form-container">
-                <h2>Contacter moi</h2>
-                <input placeholder="adresse mail" id="lemail" type="email">
-                <textarea id="message" cols="30" rows="6" placeholder="message"></textarea>
-                <button id="envoi" type="button" class="link link-primary">envoyer</button>
-                <button class="launch">joue a ce jeu pendant que je te contact</button>
-            </div>
-          </div>
-          <canvas class="game"></canvas>
           </section>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script src="nowthescript.js"></script>
