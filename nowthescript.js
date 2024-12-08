@@ -35,15 +35,10 @@ document.getElementById("btnFrançais").addEventListener("click", function() {
   }, 300);
 });
 
-window.addEventListener("load", () => {
-  const loader = document.querySelector(".loader");
-
-  loader.classList.add("loader--hidden");
-
-  loader.addEventListener("transitionend", () => {
-    document.body.removeChild(loader);
-  });
-});
+const transition = document.querySelector('.loader');
+window.setTimeout(()=> {
+  transition.style.display = 'none';
+}, 2000);
 
   document.addEventListener('DOMContentLoaded', () => {
     const audio = document.querySelector('audio');
