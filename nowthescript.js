@@ -38,7 +38,7 @@ document.getElementById("btnFrançais").addEventListener("click", function() {
 const transition = document.querySelector('.loader');
 window.setTimeout(()=> {
   transition.style.display = 'none';
-}, 2000);
+}, 1000);
 
   document.addEventListener('DOMContentLoaded', () => {
     const audio = document.querySelector('audio');
