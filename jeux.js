@@ -2,16 +2,9 @@ const launch = document.querySelector(".launch");
 const map = document.querySelector(".game");
 launch.addEventListener('click', ()=> {
         map.style.display = "flex";
-        if(gameover()) {
-        document.addEventListener('click', (e) => {reloadAnimation();});
-    }
 });
 map.height = window.innerHeight/2;
 map.width = window.innerWidth/2;
-if(window.innerWidth <= 1199) {
-    map.height = window.innerHeight;
-    map.width = window.innerWidth;
-}
 const context = map.getContext("2d");
 let gravity = 2;
 let velocityX = 1.5;
@@ -58,9 +51,6 @@ function space() {
 function ground() {
     const ground = map.getContext('2d');
     ground.height = window.innerWidth/2;
-    if(window.innerWidth <= 1199) {
-        ground.height = window.innerWidth;
-     }
     ground.width = 2;
     ground.fillStyle = 'white';
     ground.fillRect(0, map.height/2+100, ground.height, ground.width);
@@ -242,13 +232,6 @@ function initializedecor() {
     decor5();
     decor6();
 }
-function rotationdetection() {
-    const rotation = window.matchMedia("(orientation: landscape)").matches;
-    if (window.innerHeight <= 1000 && rotation)  {
-        map.height = window.innerHeight;
-        map.width = window.innerWidth;
-    }
-}
 function animate() {
     space();
     thesun();
@@ -262,7 +245,6 @@ function animate() {
     moveobjects();
     drawObstacles();
     collision();
-    rotationdetection();
     animation = requestAnimationFrame(animate);
     scoreCount += 1;
 }
@@ -296,7 +278,6 @@ document.addEventListener('keydown', (e) => {
         map.style.display = "none";
     }
 });
-document.addEventListener('click', (e) => {if(!isAnimating) {isAnimating = true; frameCount = 0;}});
 initializeObstacles()
 initializedecor()
 mainobject()
