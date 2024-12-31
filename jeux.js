@@ -5,6 +5,10 @@ launch.addEventListener('click', ()=> {
 });
 map.height = window.innerHeight/2;
 map.width = window.innerWidth/2;
+if(window.innerWidth <= 1199) {
+    map.height = window.innerHeight;
+    map.width = window.innerWidth;
+}
 const context = map.getContext("2d");
 let gravity = 2;
 let velocityX = 1.5;
@@ -51,6 +55,9 @@ function space() {
 function ground() {
     const ground = map.getContext('2d');
     ground.height = window.innerWidth/2;
+    if(window.innerWidth <= 1199) {
+        ground.height = window.innerWidth;
+     }
     ground.width = 2;
     ground.fillStyle = 'white';
     ground.fillRect(0, map.height/2+100, ground.height, ground.width);
@@ -220,7 +227,7 @@ function aka() {
     context.fillStyle = mervie.color;
     context.fillText(`Mervie`, mervie.x, mervie.y);
     mervie.x -= mervie.vitesseX;
-    if (mervie.x <= 0-100) {
+    if (mervie.x <= 0-120) {
         mervie.x = map.width;
     }
 }
@@ -231,6 +238,13 @@ function initializedecor() {
     decor4();
     decor5();
     decor6();
+}
+function rotationdetection() {
+    const rotation = window.matchMedia("(orientation: landscape)").matches;
+    if (window.innerHeight <= 1000 && rotation)  {
+        map.height = window.innerHeight;
+        map.width = window.innerWidth;
+    }
 }
 function animate() {
     space();
@@ -245,6 +259,7 @@ function animate() {
     moveobjects();
     drawObstacles();
     collision();
+    rotationdetection();
     animation = requestAnimationFrame(animate);
     scoreCount += 1;
 }

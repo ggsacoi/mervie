@@ -640,6 +640,13 @@ a:hover {
         padding: 0.5rem 0.5rem;
         border-radius: 25px;
      }
+     .launch {
+        font-size: 1.5rem;
+        margin-top: 5vh;
+        width: fit-content;
+        height: fit-content;
+        border-radius: 7px;
+     }
 }
 
 @media (max-width: 650px) {
@@ -657,7 +664,13 @@ a:hover {
         justify-content: center;
         align-items: center;
     }
-
+    .launch {
+        font-size: 1rem;
+        margin-top: 5vh;
+        width: fit-content;
+        height: fit-content;
+        border-radius: 5px;
+     }
     .toggle-label {
         top: 7.2vh;
         width: 100px;
@@ -934,11 +947,3 @@ a:hover {
       transform: rotate(1turn);
     }
   }
-@media (max-width: 1200px) {
-    .game {
-        display: none;
-    }
-    .launch {
-        display: none;
-    }
-}
