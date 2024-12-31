@@ -2,6 +2,7 @@ const launch = document.querySelector(".launch");
 const map = document.querySelector(".game");
 launch.addEventListener('click', ()=> {
         map.style.display = "flex";
+        document.addEventListener('click', (e) => {reloadAnimation();});
 });
 map.height = window.innerHeight/2;
 map.width = window.innerWidth/2;
@@ -293,6 +294,7 @@ document.addEventListener('keydown', (e) => {
         map.style.display = "none";
     }
 });
+document.addEventListener('click', (e) => {if(!isAnimating) {isAnimating = true; frameCount = 0;}});
 initializeObstacles()
 initializedecor()
 mainobject()
