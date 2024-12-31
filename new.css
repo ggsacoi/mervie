@@ -947,3 +947,11 @@ a:hover {
       transform: rotate(1turn);
     }
   }
+  @media (max-width: 1200px) {
+    .game {
+        display: none;
+    }
+    .launch {
+        display: none;
+    }
+}
