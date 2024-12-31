@@ -2,7 +2,9 @@ const launch = document.querySelector(".launch");
 const map = document.querySelector(".game");
 launch.addEventListener('click', ()=> {
         map.style.display = "flex";
+        if(gameover()) {
         document.addEventListener('click', (e) => {reloadAnimation();});
+    }
 });
 map.height = window.innerHeight/2;
 map.width = window.innerWidth/2;
