@@ -1,0 +1,110 @@
+body {
+    background-color: rgb(255, 255, 255);
+    padding: 5rem 0;
+    min-height: 100vh;
+    background-image: url(macos-monterey-stock-blue-dark-mode-layers-5k-3440x1440-5895.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    z-index: 1;
+    background-color: black;
+    color: white;
+}
+.kit {
+    background-color: transparent;
+    height: 30px;
+    width: 80px;
+    margin-bottom: 30px;
+    border: none;
+    border-radius: 0px;
+}
+.kit::-webkit-file-upload-button {
+    height: 30px;
+    width: 80px;
+    display: flex;
+    font-style: none;
+    color: rgb(253, 253, 253);
+    font-size: 10px;
+    font-weight: 400;
+    border-radius: 7px;
+    background-color: black;
+}
+#preview {
+    color: white;
+    background-color: black;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    align-self: center;
+    margin-bottom: 80px;
+}
+.lezebla {
+    display: flex;
+    width: 250px;
+    gap: 10px;
+}
+.lezebla .kombo {
+    display: flex;
+    width: 110px;
+}
+
+input {
+    border: solid 1px black;
+    height: 30px;
+    border-radius: 50px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+    border: solid 1px skyblue;
+    padding-left: 10px;
+}
+
+.zdeza {
+    display: flex;
+    width: 250px;
+}
+
+input::placeholder {
+    padding-left: 10px;
+    color: white;
+ }
+
+.content {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+}
+
+div p {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-bottom: 1px;
+}
+
+h1 {
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    color: rgb(255, 255, 255);
+}
+
+#envoi {
+    background-color: rgb(255, 0, 0);
+    border: solid 1px black;
+    width: 90px;
+    height: 20px;
+    border-radius: 10px;
+    color: white;
+}

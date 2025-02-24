@@ -1,0 +1,107 @@
+body {
+    background-color: rgb(255, 255, 255);
+    padding: 10rem 2rem;
+    min-height: 75vh;
+    background-size: 10rem;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    color: black;
+    z-index: 1;
+    background-image: url(macos-monterey-stock-blue-dark-mode-layers-5k-3440x1440-5895.jpg);
+    background-size: cover;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recadrage {
+    object-position: top;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.envoi {
+    display: flex;
+    background-color: rgb(255, 0, 0);
+    border: solid 1px black;
+    width: 90px;
+    height: 25px;
+    justify-content: center;
+    border-radius: 20px;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.decor {
+    top: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: hidden;
+    visibility: visible;
+    height: max-content;
+}
+.item {
+    width: 49vw;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    border: solid 1px red;
+    flex-direction: column;
+    overflow: none;
+}
+.photo {
+    display: flex;
+    height: 70px;
+    width: 50vw;
+    justify-content: center;
+    border-bottom: solid 0.5px red;
+    border-right: solid 0.5px red;
+    opacity: 0.5;
+    max-height: fit-content;
+}
+ h3 {
+    text-align: center;
+ }
+ p {
+    color: rgb(0, 0, 0);
+    font-size: larger;
+    font-weight: 800;
+
+ }
+
+ input {
+    display: flex;
+    width: 250px;
+    height: 30px;
+    border-radius: 50px;
+    border: solid 1px black;
+    background-color: black;
+    color: white;
+    border: solid 1px skyblue;
+    padding-left: 10px;
+ }
+
+ input::placeholder {
+    padding-left: 10px;
+    color: white;
+ }
+
+
+ .redirection {
+    font-size: medium;
+    font-weight: normal;
+    margin-top: 15px;
+ }
+ 
+ #footer {
+    top: 0;
+    min-height: 25vh;
+    height: min-content:
+ }

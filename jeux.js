@@ -5,6 +5,10 @@ launch.addEventListener('click', ()=> {
 });
 map.height = window.innerHeight/2;
 map.width = window.innerWidth/2;
+if(window.innerWidth <= 1199) {
+    map.height = window.innerHeight;
+    map.width = window.innerWidth;
+}
 const context = map.getContext("2d");
 let gravity = 2;
 let velocityX = 1.5;
@@ -51,6 +55,9 @@ function space() {
 function ground() {
     const ground = map.getContext('2d');
     ground.height = window.innerWidth/2;
+    if(window.innerWidth <= 1199 || window.innerHeight <= 910) {
+        ground.height = window.innerWidth;
+     }
     ground.width = 2;
     ground.fillStyle = 'white';
     ground.fillRect(0, map.height/2+100, ground.height, ground.width);
@@ -77,7 +84,7 @@ function decor2() {
     trucs.push({x: building.x+800, y: map.height/2, color: "white", icon: '\uf1ad', velocityX: decorvelocityX});
 }
 function decor3() {
-    trucs.push({x: building.x+500, y: map.height/2, color: "white", icon: '\uf1ad', velocityX: decorvelocityX});
+    trucs.push({x: building.x+500, y: map.height/2, color: "white", icon: "\uf1ad", velocityX: decorvelocityX});
 }
 function decor4() {
     trucs.push({x: building.x, y: map.height/2, color: "white", velocityX: decorvelocityX, icon:"\uf1ad"});
@@ -87,6 +94,24 @@ function decor5() {
 }
 function decor6() {
     trucs.push({x: building.x+300, y: map.height/2, color: "white", icon: "\uf1ad", velocityX: decorvelocityX});
+}
+function decor7() {
+    trucs.push({x: building.x+726, y: map.height/3, color: "gray", icon: "\uf64f", velocityX: decorvelocityX});
+}
+function decor8() {
+    trucs.push({x: building.x+560, y: map.height/3, color: "white", icon: '\uf549', velocityX: decorvelocityX});
+}
+function decor9() {
+    trucs.push({x: building.x+657, y: map.height/3, color: "gray", icon: '\uf64f', velocityX: decorvelocityX});
+}
+function decor10() {
+    trucs.push({x: building.x, y: map.height/3, color: "gray", velocityX: decorvelocityX, icon:"\uf64f"});
+}
+function decor11() {
+    trucs.push({x: building.x+415, y: map.height/3, color: "gray", icon: '\uf275', velocityX: decorvelocityX});
+}
+function decor12() {
+    trucs.push({x: building.x+253, y: map.height/3, color: "gray", icon: "\uf549", velocityX: decorvelocityX});
 }
 function moveobstacle() {
     Objects.forEach((obj) => {
@@ -198,7 +223,7 @@ function drawdecor() {
 }
 function movedecor() {
     trucs.forEach((truc) =>{
-        if(truc.color === 'white') {
+        if(truc.color === 'white'||truc.color === 'gray') {
             truc.x -= truc.velocityX;
     if (truc.x <= -50) {
         truc.x = map.width;
@@ -231,6 +256,19 @@ function initializedecor() {
     decor4();
     decor5();
     decor6();
+    decor7();
+    decor8();
+    decor9();
+    decor10();
+    decor11();
+    decor12();
+}
+function rotationdetection() {
+    const rotation = window.matchMedia("(orientation: landscape)").matches;
+    if (window.innerHeight <= 910 && rotation)  {
+        map.height = window.innerHeight;
+        map.width = window.innerWidth;
+    }
 }
 function animate() {
     space();
@@ -245,6 +283,7 @@ function animate() {
     moveobjects();
     drawObstacles();
     collision();
+    rotationdetection();
     animation = requestAnimationFrame(animate);
     scoreCount += 1;
 }
@@ -278,6 +317,10 @@ document.addEventListener('keydown', (e) => {
         map.style.display = "none";
     }
 });
+    document.addEventListener('dblclick', (e) => {
+        map.style.display = "none";
+    });
+document.addEventListener('click', (e) => {if(!isAnimating) {isAnimating = true; frameCount = 0;}});
 initializeObstacles()
 initializedecor()
 mainobject()
