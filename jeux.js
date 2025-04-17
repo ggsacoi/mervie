@@ -234,7 +234,7 @@ function movedecor() {
 function blaze() {
     context.font = "20px Aial";
     context.fillStyle = monblaze.color;
-    context.fillText(`@makilapetoaz0`, monblaze.x, monblaze.y);
+    context.fillText(`@makilaaz0`, monblaze.x, monblaze.y);
     monblaze.x -= monblaze.vitesseX;
     if (monblaze.x <= 0-120) {
         monblaze.x = map.width;
@@ -317,9 +317,39 @@ document.addEventListener('keydown', (e) => {
         map.style.display = "none";
     }
 });
-    document.addEventListener('dblclick', (e) => {
+let lastTap = 0;
+
+document.addEventListener('touchstart', (e) => {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTap;
+
+    if (tapLength < 300 && tapLength > 0) { // Si le deuxième tap est dans un intervalle de 300ms
         map.style.display = "none";
-    });
+    }
+
+    lastTap = currentTime;
+});
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX; // Enregistre la position de départ du toucher
+});
+
+document.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX; // Enregistre la position de fin du toucher
+    handleSwipe(); // Vérifie si c'est un swipe vers la droite
+});
+
+function handleSwipe() {
+    if (touchEndX > touchStartX + 50) { // Vérifie si le mouvement est vers la droite (50px minimum)
+        if (!isAnimating) {
+            isAnimating = true;
+            frameCount = 0;
+            animation = requestAnimationFrame(animate); // Démarre l'animation
+        }
+    }
+}
 document.addEventListener('click', (e) => {if(!isAnimating) {isAnimating = true; frameCount = 0;}});
 initializeObstacles()
 initializedecor()

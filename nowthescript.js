@@ -19,7 +19,7 @@ sending.addEventListener("click",(e)=>{
         Subject : "vous avez un nouveau message voici l'email ::" + email.value,
         Body : send
     }).then(
-      message => alert("message envoyer")
+      alert("message envoyer")
     );
 });
 
@@ -45,19 +45,18 @@ window.setTimeout(()=> {
     const controls = document.querySelector('.controls');
     const playIcon = document.querySelector('.fa-play');
     const pauseIcon = document.querySelector('.fa-pause');
-  setTimeout(() =>{
-      audio.play();
-    }, 500);
-
-  controls.addEventListener('click', ()=>{
+ // Attendre une interaction utilisateur avant de jouer l'audio
+ controls.addEventListener('click', () => {
   if (audio.paused) {
-    audio.play();
-    pauseIcon.style.display ='flex';
-    playIcon.style.display = 'none';
-  }else {
-    audio.pause();
-    playIcon.style.display ='flex';
-    pauseIcon.style.display = 'none';
-  };
+      audio.play().catch(error => {
+          console.error("Erreur lors de la lecture de l'audio :", error);
+      });
+      pauseIcon.style.display = 'flex';
+      playIcon.style.display = 'none';
+  } else {
+      audio.pause();
+      playIcon.style.display = 'flex';
+      pauseIcon.style.display = 'none';
+  }
 });
 });

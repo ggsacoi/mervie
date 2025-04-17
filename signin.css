@@ -57,7 +57,7 @@ body {
 }
 .lezebla .kombo {
     display: flex;
-    width: 110px;
+    width: 115px;
 }
 
 input {
@@ -70,7 +70,7 @@ input {
     justify-content: center;
     margin-bottom: 25px;
     border: solid 1px skyblue;
-    padding-left: 10px;
+    padding-left: 0;
 }
 
 .zdeza {
@@ -79,7 +79,7 @@ input {
 }
 
 input::placeholder {
-    padding-left: 10px;
+    padding-left:10px;
     color: white;
  }
 

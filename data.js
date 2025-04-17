@@ -22,6 +22,7 @@
 
   const imageInput = document.getElementById('imageInput');
   const preview = document.getElementById('preview');
+  const seconnecter = document.getElementById('connexion');
   
   imageInput.addEventListener('change', function() {
       const file = this.files[0];
