@@ -80,7 +80,7 @@ body {
     text-decoration: none;
     display: flex;
     flex-direction: column;
-    border: solid 1px  gray;
+    border: solid 1px  rgb(0, 62, 66);
     height: 100%;
     width: min-content;
     max-width: 1200px;

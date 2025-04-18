@@ -13,6 +13,7 @@ const context = map.getContext("2d");
 let gravity = 2;
 let velocityX = 1.5;
 let decorvelocityX = 0.8;
+let carvelocityX = 0.2;
 let Objects = [];
 let trucs = [];
 let frameCount = 0;
@@ -78,40 +79,61 @@ function upstacle() {
     Objects.push({ height: 30, width: 30, x: randomXPosition([550, 620]), y: upstacleP, color: 'purple', val: 7000});
 }
 function decor1() {
-    trucs.push({x: building.x+750, y: map.height/2, color: "white", icon: "\uf1ad", velocityX: decorvelocityX});
+    trucs.push({x: building.x+750, y: map.height/2, color: "gray", icon: "\uf1ad", velocityX: decorvelocityX});
 }
 function decor2() {
-    trucs.push({x: building.x+800, y: map.height/2, color: "white", icon: '\uf1ad', velocityX: decorvelocityX});
+    trucs.push({x: building.x+800, y: map.height/2, color: "gray", icon: '\uf1ad', velocityX: decorvelocityX});
 }
 function decor3() {
-    trucs.push({x: building.x+500, y: map.height/2, color: "white", icon: "\uf1ad", velocityX: decorvelocityX});
+    trucs.push({x: building.x+500, y: map.height/2, color: "gray", icon: "\uf1b9", velocityX: decorvelocityX});
 }
 function decor4() {
-    trucs.push({x: building.x, y: map.height/2, color: "white", velocityX: decorvelocityX, icon:"\uf1ad"});
+    trucs.push({x: building.x, y: map.height/2, color: "gray", velocityX: decorvelocityX, icon:"\uf1ad"});
 }
 function decor5() {
-    trucs.push({x: building.x+150, y: map.height/2, color: "white", icon: '\uf1ad', velocityX: decorvelocityX});
+    trucs.push({x: building.x+150, y: map.height/2, color: "gray", icon: '\uf1ad', velocityX: decorvelocityX});
 }
 function decor6() {
-    trucs.push({x: building.x+300, y: map.height/2, color: "white", icon: "\uf1ad", velocityX: decorvelocityX});
+    trucs.push({x: building.x+300, y: map.height/2, color: "gray", icon: "\uf1ad", velocityX: decorvelocityX});
 }
 function decor7() {
-    trucs.push({x: building.x+726, y: map.height/3, color: "gray", icon: "\uf64f", velocityX: decorvelocityX});
+    trucs.push({x: building.x+726, y: map.height/2.3, color: "gray", icon: "\uf1ad", velocityX: decorvelocityX});
 }
 function decor8() {
-    trucs.push({x: building.x+560, y: map.height/3, color: "white", icon: '\uf549', velocityX: decorvelocityX});
+    trucs.push({x: building.x+560, y: map.height/2.3, color: "gray", icon: '\uf549', velocityX: decorvelocityX});
 }
 function decor9() {
-    trucs.push({x: building.x+657, y: map.height/3, color: "gray", icon: '\uf64f', velocityX: decorvelocityX});
+    trucs.push({x: building.x+657, y: map.height/2.3, color: "gray", icon: '\uf64f', velocityX: decorvelocityX});
 }
 function decor10() {
-    trucs.push({x: building.x, y: map.height/3, color: "gray", velocityX: decorvelocityX, icon:"\uf64f"});
+    trucs.push({x: building.x, y: map.height/2.24, color: "gray", velocityX: decorvelocityX, icon:"\uf1ad"});
 }
 function decor11() {
-    trucs.push({x: building.x+415, y: map.height/3, color: "gray", icon: '\uf275', velocityX: decorvelocityX});
+    trucs.push({x: building.x+415, y: map.height/2.3, color: "gray", icon: '\uf275', velocityX: decorvelocityX});
 }
 function decor12() {
-    trucs.push({x: building.x+253, y: map.height/3, color: "gray", icon: "\uf549", velocityX: decorvelocityX});
+    trucs.push({x: building.x+253, y: map.height/2.3, color: "gray", icon: "\uf549", velocityX: decorvelocityX});
+}
+function decor13() {
+    trucs.push({x: map.width, y: map.height/2+20, color: "gray", icon: "\uf5e4", velocityX: carvelocityX});
+}
+function rood() {
+    const roodup = map.getContext('2d');
+    roodup.height = window.innerWidth/2;
+    if(window.innerWidth <= 1199 || window.innerHeight <= 910) {
+        roodup.height = window.innerWidth;
+     }
+    roodup.width = 1;
+    roodup.fillStyle = 'white';
+    roodup.fillRect(0, map.height/2+30, roodup.height, roodup.width);
+    const rood = map.getContext('2d');
+    rood.height = window.innerWidth/2;
+    if(window.innerWidth <= 1199 || window.innerHeight <= 910) {
+        rood.height = window.innerWidth;
+     }
+    rood.width = 1;
+    rood.fillStyle = 'white';
+    rood.fillRect(0, map.height/2+10, rood.height, rood.width);
 }
 function moveobstacle() {
     Objects.forEach((obj) => {
@@ -248,7 +270,7 @@ function thesun() {
 }
 function drawdecor() {
     trucs.forEach((truc) => {
-        if(truc.color === "white") {
+        if(truc.color === "gray") {
             context.font = "30px FontAwesome";
             context.fillStyle = truc.color;
             context.fillText(truc.icon, truc.x, truc.y);
@@ -257,7 +279,7 @@ function drawdecor() {
 }
 function movedecor() {
     trucs.forEach((truc) =>{
-        if(truc.color === 'white'||truc.color === 'gray') {
+        if(truc.color === 'gray') {
             truc.x -= truc.velocityX;
     if (truc.x <= -50) {
         truc.x = map.width;
@@ -314,6 +336,7 @@ function initializedecor() {
     decor10();
     decor11();
     decor12();
+    decor13();
 }
 function rotationdetection() {
     const rotation = window.matchMedia("(orientation: landscape)").matches;
@@ -330,8 +353,9 @@ function animate() {
     drawdecor();
     movedecor();
     ground();
+    rood();
+    drawDecor13();
     score();
-//   modePotrait();
     moveobstacle();
     moveobjects();
     drawObstacles();
@@ -339,6 +363,14 @@ function animate() {
     rotationdetection();
     animation = requestAnimationFrame(animate);
     scoreCount += 1;
+}
+function drawDecor13() {
+    const decor13 = trucs.find(truc => truc.icon === "\uf5e4"); // Trouve decor13
+    if (decor13) {
+        context.font = "30px FontAwesome";
+        context.fillStyle = decor13.color;
+        context.fillText(decor13.icon, decor13.x, decor13.y);
+    }
 }
 function reloadAnimation() {
     cancelAnimationFrame(animation);
