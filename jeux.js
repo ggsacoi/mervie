@@ -186,10 +186,10 @@ function gameover() {
 
 if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
         context.font = '15px Arial';
-        context.fillText(`glisse ton doigt vers la droite pour rejouer`, 20, map.height-40);
-        context.fillText(`swipe right to replay`, 20, map.height-20);
-        context.fillText(`clique ici pour quitter`, map.width-230, map.height-40);
-        context.fillText(`click here to quite`, map.width-230, map.height-20);
+        context.fillText(`glisse vers la droite pour rejouer`, 10, map.height-40);
+        context.fillText(`swipe right to replay`, 10, map.height-20);
+        context.fillText(`clique ici pour quitter`, map.width-140, map.height-40);
+        context.fillText(`click here to quite`, map.width-140, map.height-20);
     } else {
         context.font = '20px Arial';
         context.fillText(`presse sur S pour quitter`, map.width-230, map.height-40);
