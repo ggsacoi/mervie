@@ -1,5 +1,10 @@
 const sending = document.getElementById("envoi");
-
+const imageElement = document.getElementById("dynamicImage");
+const images = [
+  "481409044_1166194408383892_4735767193394602156_n.jpg",
+  "1714619334642.jpg",
+];
+let currentIndex = 0;
 sending.addEventListener("click",(e)=>{
     e.preventDefault();
     console.log("clicked");
@@ -18,9 +23,12 @@ sending.addEventListener("click",(e)=>{
         From : "merviendama@gmail.com",
         Subject : "vous avez un nouveau message voici l'email ::" + email.value,
         Body : send
-    }).then(
-      alert("message envoyer")
-    );
+    })
+// Change l'image au clic
+  currentIndex = (currentIndex + 1) % 2; // Alterne entre les deux images
+  imageElement.src = images[currentIndex]; // Met à jour la source de l'image
+  console.log(`Image changed to: ${images[currentIndex]}`); // Debug : Affiche l'image actuelle
+    alert("message envoyer")
 });
 
 document.getElementById("englishBtn").addEventListener("click", function() {

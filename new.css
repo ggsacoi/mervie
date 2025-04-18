@@ -6,6 +6,7 @@
     scroll-behavior: smooth;
     list-style: none;
     text-decoration: none;
+    touch-action: manipulation;
 }
 .navbar {
     z-index: 2;
@@ -439,6 +440,8 @@
 
 .contact-img {
     width: 50%;
+    max-width: 500px;
+    overflow: hidden;
 }
 
 .contact-img img {
@@ -447,7 +450,8 @@
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     width: 100%;
-    object-position: center;
+    max-width: max-content;
+    object-position: center center;
     object-fit: cover;
 }
 
