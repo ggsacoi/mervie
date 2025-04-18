@@ -361,6 +361,21 @@ function reloadAnimation() {
     movedecor();
     animation = requestAnimationFrame(animate);
 }
+let touchStartX = 0;
+let touchEndX = 0;
+document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX; // Enregistre la position de départ du toucher
+});
+document.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX; // Enregistre la position de fin du toucher
+    const swipeDistance = touchEndX - touchStartX;
+    if (Math.abs(swipeDistance) > 30) { // Seuil minimum de 30 pixels
+        console.log("Swipe detected");
+        if (touchEndX) {
+            reloadAnimation();
+        }
+    }
+});
 document.addEventListener('keydown', (e) => {
     if(e.code == 'KeyW' || 'ArrowUp' || 'KeyZ' && !isAnimating) {
         isAnimating = true;
@@ -375,39 +390,7 @@ document.addEventListener('keydown', (e) => {
         map.style.display = "none";
     }
 });
-let lastTap = 0;
-document.addEventListener('touchstart', (e) => {
-    const currentTime = new Date().getTime();
-    const tapLength = currentTime - lastTap;
-    if (tapLength < 300 && tapLength > 0) { // Si le deuxième tap est dans un intervalle de 300ms
-        map.style.display = "none";
-    }
-    lastTap = currentTime;
-});
-let touchStartX = 0;
-let touchEndX = 0;
-document.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX; // Enregistre la position de départ du toucher
-    console.log("Touch start position:", touchStartX); // Debug : Affiche la position de départ
-});
-document.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX; // Enregistre la position de fin du toucher
-    console.log("Touch end position:", touchEndX); // Debug : Affiche la position de fin
-    handleSwipe(); // Vérifie si c'est un swipe vers la droite
-});
-function handleSwipe() {
-    console.log("Touch start position:", touchStartX);
-    console.log("Touch end position:", touchEndX);
-    console.log("Swipe distance:", touchEndX - touchStartX);
-    console.log("isAnimating:", isAnimating); // Debug : Affiche l'état de isAnimating
 
-    if (touchEndX > touchStartX + 50) { // Vérifie si le mouvement est vers la droite (50px minimum)
-        console.log("Condition met: Swipe detected");
-        if (!isAnimating) {
-         reloadAnimation();
-        }
-    }
-}
 document.addEventListener('click', (e) => {if(!isAnimating) {isAnimating = true; frameCount = 0;}});
 initializeObstacles()
 initializedecor()
