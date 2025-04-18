@@ -249,6 +249,41 @@ function aka() {
         mervie.x = map.width;
     }
 }
+function ratotePhone() {
+    const rotation = window.matchMedia("(orientation: portrait)").matches;
+    console.log("Hauteur de la fenêtre :", window.innerHeight);
+    console.log("Orientation portrait :", rotation);
+
+    if (window.innerHeight <= 950 && rotation) {
+        map.height = window.innerHeight;
+        map.width = window.innerWidth;
+
+        // Effacer le canvas avant de dessiner
+        context.clearRect(0, 0, map.width, map.height);
+
+        // Charger l'image
+        const img = new Image();
+        img.width = map.width / 2;
+        img.height = map.width / 2;
+        img.src = './istockphoto-1441102310-640x640.jpg?' + new Date().getTime(); // Forcer le rechargement
+
+        // Vérifier si l'image est chargée
+        img.onload = () => {
+            console.log("Image chargée :", img.src);
+            const centerX = map.width / 2 - img.width / 2;
+            const centerY = map.height / 2 - img.height / 2;
+            context.drawImage(img, centerX, centerY, img.width, img.height);
+        };
+
+        // Gérer les erreurs de chargement
+        img.onerror = () => {
+            console.error("Erreur lors du chargement de l'image :", img.src);
+            console.error("Vérifiez le chemin et la présence du fichier.");
+        };
+    } else {
+        console.log("Condition non remplie pour afficher l'image.");
+    }
+}
 function initializedecor() {
     decor1();
     decor2();
@@ -279,6 +314,7 @@ function animate() {
     movedecor();
     ground();
     score();
+    ratotePhone();
     moveobstacle();
     moveobjects();
     drawObstacles();
