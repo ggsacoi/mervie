@@ -182,12 +182,22 @@ function collision() {
 }
 function gameover() {
     context.fillStyle = 'white';
-    context.font = '20px Arial';
+    const userAgent = window.navigator.userAgent;
+
+if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
+        context.font = '15px Arial';
+        context.fillText(`glisse ton doigt vers la droite pour rejouer`, 20, map.height-40);
+        context.fillText(`swipe right to replay`, 20, map.height-20);
+        context.fillText(`clique ici pour quitter`, map.width-230, map.height-40);
+        context.fillText(`click here to quite`, map.width-230, map.height-20);
+    } else {
+        context.font = '20px Arial';
+        context.fillText(`presse sur S pour quitter`, map.width-230, map.height-40);
+        context.fillText(`press on S to quite`, map.width-230, map.height-20);
+        context.fillText(`clique sur R pour rejouer`, 20, map.height-40);
+        context.fillText(`click on R to replay`, 20, map.height-20);
+    }
     context.fillText(`GAME OVER`, map.width/2-60, map.height/2);
-    context.fillText(`clique sur R pour rejouer`, 20, map.height-40);
-    context.fillText(`click on R to replay`, 20, map.height-20);
-    context.fillText(`presse sur S pour quitter`, map.width-230, map.height-40);
-    context.fillText(`press on S to quite`, map.width-230, map.height-20);
     cancelAnimationFrame(animationFrame);
 }
 function score() {
@@ -254,53 +264,6 @@ function modePotrait() {
     console.log("Hauteur de la fenêtre :", window.innerHeight);
     console.log("Orientation portrait :", rotation);
     if (window.innerHeight <= 950 && rotation) {
-        map.height = window.innerHeight;
-        map.width = window.innerWidth;
-        // Effacer le canvas avant de dessiner
-        context.clearRect(0, 0, map.width, map.height);
-        // Charger la vidéo
-        const video = document.createElement('video');
-        video.src = './Rotate your phone screen to landscape  no copyright video  free download link.mp4'; // Remplacez par le chemin de votre vidéo
-        video.autoplay = true;
-        video.loop = true;
-        video.muted = true; // Désactiver le son pour éviter les restrictions des navigateurs
-        // Dessiner la vidéo sur le canvas une fois qu'elle est prête
-        video.onloadeddata = () => {
-            console.log("Vidéo chargée :", video.src);
-            // Calculer les dimensions pour conserver les proportions
-            const maxWidth = map.width / 4; // Par exemple, 50% de la largeur du canvas
-            const maxHeight = map.height / 4; // Par exemple, 50% de la hauteur du canvas
-            let videoWidth = video.videoWidth;
-            let videoHeight = video.videoHeight;
-
-            if (videoWidth > maxWidth || videoHeight > maxHeight) {
-                const widthRatio = maxWidth / videoWidth;
-                const heightRatio = maxHeight / videoHeight;
-                const scale = Math.min(widthRatio, heightRatio); // Choisir le ratio le plus petit pour conserver les proportions
-
-                videoWidth *= scale;
-                videoHeight *= scale;
-            }
-            // Calculer les coordonnées pour centrer la vidéo
-            const centerX = map.width / 2 - videoWidth / 2;
-            const centerY = map.height / 2 - videoHeight / 2;
-
-            // Dessiner la vidéo sur le canvas à chaque frame
-            function drawVideo() {
-                context.clearRect(0, 0, map.width, map.height); // Effacer le canvas
-                context.drawImage(video, 0, 0, videoWidth, videoHeight);
-                requestAnimationFrame(drawVideo); // Boucle pour redessiner la vidéo
-            }
-            drawVideo(); // Démarrer le dessin de la vidéo
-        };
-
-        // Gérer les erreurs de chargement
-        video.onerror = () => {
-            console.error("Erreur lors du chargement de la vidéo :", video.src);
-            console.error("Vérifiez le chemin et la présence du fichier.");
-        };
-    } else {
-        console.log("Condition non remplie pour afficher la vidéo.");
     }
 }
 function modelandscape() {
