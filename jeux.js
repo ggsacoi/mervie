@@ -249,40 +249,62 @@ function aka() {
         mervie.x = map.width;
     }
 }
-function ratotePhone() {
+function modePotrait() {
     const rotation = window.matchMedia("(orientation: portrait)").matches;
     console.log("Hauteur de la fenêtre :", window.innerHeight);
     console.log("Orientation portrait :", rotation);
-
     if (window.innerHeight <= 950 && rotation) {
         map.height = window.innerHeight;
         map.width = window.innerWidth;
-
         // Effacer le canvas avant de dessiner
         context.clearRect(0, 0, map.width, map.height);
+        // Charger la vidéo
+        const video = document.createElement('video');
+        video.src = './Rotate your phone screen to landscape  no copyright video  free download link.mp4'; // Remplacez par le chemin de votre vidéo
+        video.autoplay = true;
+        video.loop = true;
+        video.muted = true; // Désactiver le son pour éviter les restrictions des navigateurs
+        // Dessiner la vidéo sur le canvas une fois qu'elle est prête
+        video.onloadeddata = () => {
+            console.log("Vidéo chargée :", video.src);
+            // Calculer les dimensions pour conserver les proportions
+            const maxWidth = map.width / 4; // Par exemple, 50% de la largeur du canvas
+            const maxHeight = map.height / 4; // Par exemple, 50% de la hauteur du canvas
+            let videoWidth = video.videoWidth;
+            let videoHeight = video.videoHeight;
 
-        // Charger l'image
-        const img = new Image();
-        img.width = map.width / 2;
-        img.height = map.width / 2;
-        img.src = './istockphoto-1441102310-640x640.jpg?' + new Date().getTime(); // Forcer le rechargement
+            if (videoWidth > maxWidth || videoHeight > maxHeight) {
+                const widthRatio = maxWidth / videoWidth;
+                const heightRatio = maxHeight / videoHeight;
+                const scale = Math.min(widthRatio, heightRatio); // Choisir le ratio le plus petit pour conserver les proportions
 
-        // Vérifier si l'image est chargée
-        img.onload = () => {
-            console.log("Image chargée :", img.src);
-            const centerX = map.width / 2 - img.width / 2;
-            const centerY = map.height / 2 - img.height / 2;
-            context.drawImage(img, centerX, centerY, img.width, img.height);
+                videoWidth *= scale;
+                videoHeight *= scale;
+            }
+            // Calculer les coordonnées pour centrer la vidéo
+            const centerX = map.width / 2 - videoWidth / 2;
+            const centerY = map.height / 2 - videoHeight / 2;
+
+            // Dessiner la vidéo sur le canvas à chaque frame
+            function drawVideo() {
+                context.clearRect(0, 0, map.width, map.height); // Effacer le canvas
+                context.drawImage(video, 0, 0, videoWidth, videoHeight);
+                requestAnimationFrame(drawVideo); // Boucle pour redessiner la vidéo
+            }
+            drawVideo(); // Démarrer le dessin de la vidéo
         };
 
         // Gérer les erreurs de chargement
-        img.onerror = () => {
-            console.error("Erreur lors du chargement de l'image :", img.src);
+        video.onerror = () => {
+            console.error("Erreur lors du chargement de la vidéo :", video.src);
             console.error("Vérifiez le chemin et la présence du fichier.");
         };
     } else {
-        console.log("Condition non remplie pour afficher l'image.");
+        console.log("Condition non remplie pour afficher la vidéo.");
     }
+}
+function modelandscape() {
+
 }
 function initializedecor() {
     decor1();
@@ -314,7 +336,7 @@ function animate() {
     movedecor();
     ground();
     score();
-    ratotePhone();
+//   modePotrait();
     moveobstacle();
     moveobjects();
     drawObstacles();
@@ -354,35 +376,35 @@ document.addEventListener('keydown', (e) => {
     }
 });
 let lastTap = 0;
-
 document.addEventListener('touchstart', (e) => {
     const currentTime = new Date().getTime();
     const tapLength = currentTime - lastTap;
-
     if (tapLength < 300 && tapLength > 0) { // Si le deuxième tap est dans un intervalle de 300ms
         map.style.display = "none";
     }
-
     lastTap = currentTime;
 });
 let touchStartX = 0;
 let touchEndX = 0;
-
 document.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX; // Enregistre la position de départ du toucher
+    console.log("Touch start position:", touchStartX); // Debug : Affiche la position de départ
 });
-
 document.addEventListener('touchend', (e) => {
     touchEndX = e.changedTouches[0].screenX; // Enregistre la position de fin du toucher
+    console.log("Touch end position:", touchEndX); // Debug : Affiche la position de fin
     handleSwipe(); // Vérifie si c'est un swipe vers la droite
 });
-
 function handleSwipe() {
+    console.log("Touch start position:", touchStartX);
+    console.log("Touch end position:", touchEndX);
+    console.log("Swipe distance:", touchEndX - touchStartX);
+    console.log("isAnimating:", isAnimating); // Debug : Affiche l'état de isAnimating
+
     if (touchEndX > touchStartX + 50) { // Vérifie si le mouvement est vers la droite (50px minimum)
+        console.log("Condition met: Swipe detected");
         if (!isAnimating) {
-            isAnimating = true;
-            frameCount = 0;
-            animation = requestAnimationFrame(animate); // Démarre l'animation
+         reloadAnimation();
         }
     }
 }
