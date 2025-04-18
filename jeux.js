@@ -207,7 +207,22 @@ if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
     context.fillStyle = 'red';
     context.fillText(`GAME OVER`, map.width/2-90, map.height/2);
 }
+map.addEventListener('click', handleQuitClick);
     cancelAnimationFrame(animationFrame);
+}
+function handleQuitClick(event) {
+    const rect = map.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    const textX = map.width - 140 ;
+    const textY = map.height - 40 || map.height - 20;
+    const textWidth = 140;
+    const textHeight = 20;
+
+    if (x >= textX && x <= textX + textWidth && y >= textY && y <= textY + textHeight) {
+        leavethegame();
+        map.removeEventListener('click', handleQuitClick);
+    }
 }
 function score() {
     context.fillStyle = 'white';
