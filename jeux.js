@@ -28,20 +28,20 @@ let building = {
 let sun = {
     x: map.width/4,
     y: map.height/4,
-    color: "white",
-    icon: "\uf185",
+    color: "skyblue",
+    icon: "\uf6c3",
     vitesseX: 0.004
 };
 let monblaze = {
     x: map.width,
     y: map.height-70,
-    color: 'white',
+    color: 'yellow',
     vitesseX: 0.2
 };
 let mervie = {
     x: map.width/2+map.width,
     y: map.height-70,
-    color: 'white',
+    color: 'skyblue',
     vitesseX: 0.2
 };
 function randomXPosition(options) {
@@ -190,6 +190,7 @@ if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
         context.fillText(`swipe right to replay`, 10, map.height-20);
         context.fillText(`clique ici pour quitter`, map.width-140, map.height-40);
         context.fillText(`click here to quite`, map.width-140, map.height-20);
+        context.fillText(`>>`, map.width/2, map.height-160);
     } else {
         context.font = '20px Arial';
         context.fillText(`presse sur S pour quitter`, map.width-230, map.height-40);
@@ -197,7 +198,15 @@ if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
         context.fillText(`clique sur R pour rejouer`, 20, map.height-40);
         context.fillText(`click on R to replay`, 20, map.height-20);
     }
-    context.fillText(`GAME OVER`, map.width/2-60, map.height/2);
+    if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
+    context.font = '20px Candal';
+    context.fillStyle = 'red';
+    context.fillText(`GAME OVER`, map.width/2-50, map.height/2);
+}   else {
+    context.font = '30px Candal';
+    context.fillStyle = 'red';
+    context.fillText(`GAME OVER`, map.width/2-90, map.height/2);
+}
     cancelAnimationFrame(animationFrame);
 }
 function score() {
@@ -243,6 +252,10 @@ function movedecor() {
 }
 function blaze() {
     context.font = "20px Aial";
+    const userAgent = window.navigator.userAgent;
+    if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
+        context.font = "10px Aial";
+    }
     context.fillStyle = monblaze.color;
     context.fillText(`@makilaaz0`, monblaze.x, monblaze.y);
     monblaze.x -= monblaze.vitesseX;
@@ -252,6 +265,10 @@ function blaze() {
 }
 function aka() {
     context.font = "20px Aial";
+    const userAgent = window.navigator.userAgent;
+    if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
+        context.font = "10px Aial";
+    }
     context.fillStyle = mervie.color;
     context.fillText(`Mervie`, mervie.x, mervie.y);
     mervie.x -= mervie.vitesseX;
