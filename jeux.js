@@ -417,7 +417,10 @@ document.addEventListener('keydown', (e) => {
         map.style.display = "none";
     }
 });
-
+function leavethegame() {
+    console.log("Quitter le jeu");
+    map.style.display = "none"; // Cache le canvas
+}
 document.addEventListener('click', (e) => {if(!isAnimating) {isAnimating = true; frameCount = 0;}});
 initializeObstacles()
 initializedecor()
