@@ -40,7 +40,7 @@ document.getElementById("englishBtn").addEventListener("click", function() {
 
 document.getElementById("btnFrançais").addEventListener("click", function() {
   setTimeout(function() {
-    window.open("index1.html", "_top");
+    window.open("main.html", "_top");
   }, 300);
 });
 
