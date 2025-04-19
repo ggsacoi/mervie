@@ -5,6 +5,7 @@ const images = [
   "1714619334642.jpg",
 ];
 let currentIndex = 0;
+
 sending.addEventListener("click",(e)=>{
     e.preventDefault();
     console.log("clicked");
@@ -12,25 +13,25 @@ sending.addEventListener("click",(e)=>{
     const Message = document.getElementById("message");
     const email = document.getElementById("lemail");
 
-    let send =` <b>tiens: </b>${Message.value} + ${email.value}`;
+    let send =`tiens: ${Message.value} + ${email.value}`;
 
-    Email.send({
-        Host : "smtp.elasticemail.com",
-        Username : "merviendma@gmail.com",
-        Password : "0A3820F0657D0726E4D1A76183B571550DA9",
-        SecureToken : "236369de-bba0-4150-b749-71209e0ab842",
-        To : 'merviendama@gmail.com',
-        From : "merviendama@gmail.com",
-        Subject : "vous avez un nouveau message voici l'email ::" + email.value,
-        Body : send
-    })
+    emailjs.send("service_tww5dwg", "template_vm8to0e", {
+      from_name: email.value,
+      to_name: "Makilaaz0",
+      email: email.value,
+      message: send,
+    }).then((message) => {
+      console.log("Message envoyé :", message);
+      alert("Message envoyé avec succès !");
+  }).catch((error) => {
+      console.error("Erreur lors de l'envoi de l'e-mail :", error);
+      alert("Erreur lors de l'envoi de l'e-mail. Veuillez réessayer.");
+  });
 // Change l'image au clic
   currentIndex = (currentIndex + 1) % 2; // Alterne entre les deux images
   imageElement.src = images[currentIndex]; // Met à jour la source de l'image
   console.log(`Image changed to: ${images[currentIndex]}`); // Debug : Affiche l'image actuelle
-    alert("message envoyer")
 });
-
 document.getElementById("englishBtn").addEventListener("click", function() {
   setTimeout(function() {
     window.open("index.html", "_top");
