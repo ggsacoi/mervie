@@ -219,6 +219,9 @@ if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
         context.fillText(`press on S to quite`, map.width-230, map.height-20);
         context.fillText(`clique sur R pour rejouer`, 20, map.height-40);
         context.fillText(`click on R to replay`, 20, map.height-20);
+        context.fillText(`presse Z pour sauter`, 20, map.height-70);
+        context.font = '20px FontAwesome';
+        context.fillText('\uf5e4', 20, map.height-70);
     }
     if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
     context.font = '20px Candal';
@@ -404,7 +407,7 @@ document.addEventListener('touchend', (e) => {
     }
 });
 document.addEventListener('keydown', (e) => {
-    if(e.code == 'KeyW' || 'ArrowUp' || 'KeyZ' && !isAnimating) {
+    if(e.code == 'KeyW' || 'ArrowUp' || 'KeyZ' || 'space' && !isAnimating) {
         isAnimating = true;
         frameCount = 0;
     }
