@@ -1,8 +1,8 @@
 const sending = document.getElementById("envoi");
 const imageElement = document.getElementById("dynamicImage");
 const images = [
+  "Makilaaz0 🔥.jfif",
   "481409044_1166194408383892_4735767193394602156_n.jpg",
-  "1714619334642.jpg",
 ];
 let currentIndex = 0;
 
