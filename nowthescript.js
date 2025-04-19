@@ -34,13 +34,13 @@ sending.addEventListener("click",(e)=>{
 });
 document.getElementById("englishBtn").addEventListener("click", function() {
   setTimeout(function() {
-    window.open("index.html", "_top");
+    window.open("main.html", "_top");
   }, 300);
 });
 
 document.getElementById("btnFrançais").addEventListener("click", function() {
   setTimeout(function() {
-    window.open("main.html", "_top");
+    window.open("index.html", "_top");
   }, 300);
 });
 
