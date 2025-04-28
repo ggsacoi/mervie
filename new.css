@@ -6,26 +6,6 @@
     scroll-behavior: smooth;
     list-style: none;
     text-decoration: none;
-    touch-action: manipulation;
-}
-.Box {
-    display: flex;
-    flex-direction: column;
-    height: max-content;
-    width: max-content;
-    position: fixed;
-    right: -190px;
-    top: calc(100vh - 60px);
-}
-.eye {
-    width: 60px;
-    height: 60px;
-    background-image: url("istockphoto-519828383-612x612.jpg");
-    background-size: cover;
-    border: none;
-}
-.avatar {
-    width: 250px;
 }
 .navbar {
     z-index: 2;
@@ -239,7 +219,7 @@
     background-repeat: no-repeat;
 }
 
-#Mervie .typeof {
+#Mervie h2 {
     text-align: center;
     font-size: 2.5rem;
     font-weight: 400;
@@ -459,8 +439,6 @@
 
 .contact-img {
     width: 50%;
-    max-width: 500px;
-    overflow: hidden;
 }
 
 .contact-img img {
@@ -469,8 +447,7 @@
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     width: 100%;
-    max-width: max-content;
-    object-position: center center;
+    object-position: center;
     object-fit: cover;
 }
 
@@ -779,7 +756,7 @@ a:hover {
         text-transform: uppercase;
         text-align: center;
     }
-    .typeof {
+    h2 {
         font-size: 3vw;
     }
     .link-primary {
@@ -895,7 +872,7 @@ a:hover {
 
     }
 
-    .form-container .typeofscreens {
+    .form-container h2 {
         font-size: 100%;
     }
 

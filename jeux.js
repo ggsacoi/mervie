@@ -356,10 +356,10 @@ if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
     context.fillStyle = 'red';
     context.fillText(`GAME OVER`, map.width/2-50, map.height/2);
     context.font = '10px Candal';
-    context.fillText(`${theName} highscore:${theScore}`, map.width-225, 30);
+    context.fillText(`${theName} highscore:${theScore}`, map.width-120, 30);
     context.fillStyle = 'skyblue';
-    context.fillText(`${sName}  highscore:${sScore}`, map.width-225, 50);
-    context.fillText(`${tName}  highscore:${tScore}`, map.width-225, 70);
+    context.fillText(`${sName}  highscore:${sScore}`, map.width-120, 40);
+    context.fillText(`${tName}  highscore:${tScore}`, map.width-120, 50);
 }   else {
     context.font = '30px Candal';
     context.fillStyle = 'red';
@@ -407,14 +407,18 @@ function handleQuitClick(event) {
     }
 }
 function score() {
-    context.fillStyle = 'white';
-    context.font = '20px Arial';
+        context.fillStyle = 'white';
+        const userAgent = window.navigator.userAgent;
+    if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
+        context.font = '10px Arial';
+    context.fillText(`score: ${scoreCount}`, 10, 30);
+    context.fillText(`record: ${monScore}`, 10, 40);
+    } else {
         context.fillStyle = 'white';
         context.font = '20px Arial';
     context.fillText(`score: ${scoreCount}`, 10, 30);
     context.fillText(`record: ${monScore}`, 10, 50);
-    context.font = '20px Candal';
-    context.fillStyle = 'red';
+    }
 }
 async function saveScore() {
     console.log("🔔 saveScore() appelée !");
