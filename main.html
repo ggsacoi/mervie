@@ -8,7 +8,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-  <audio class="musique" autoplay  loop src="Mark Ronson - Uptown Funk (Official Video) ft. Bruno Mars.mp3"></audio>
+  <div class="Box">
+  <button class="eye"></button>
+  <video class="avatar" controls src="Avatar_Pippit_202504240752.mp4"></video>
+  </div>
+  <audio class="musique" loop></audio>
   <button class="controls">
     <i class="fa-solid fa-play" style="display: none;"></i>
     <i class="fa-solid fa-pause"></i>
@@ -45,6 +49,14 @@
             </label>
           </div>
           <section id="contact">
+            <h2 style="color: white; position: relative; left: 68vw; top: 5vh; transform: rotate(120deg);width: max-content;">Mervie</h2>
+            <form id="chat-form">
+              <input type="text" id="user-input" placeholder="Pose ta question..." required>
+              <button type="submit">Envoyer</button>
+            </form>
+            
+            <!-- Espace pour afficher la réponse -->
+            <div style="color: white;"id="response"></div>
             <div class="contact-container container">
               <div class="contact-img">
                 <img class="recadrage" id="dynamicImage" decoding="async" src="Makilaaz0 🔥.jfif" alt="Image dynamique"/>
@@ -58,9 +70,10 @@
                 <button class="launch">Play this game while I contact you</button>
               </div>
             </div>
-            <canvas class="game"></canvas>
+            <canvas id="game"></canvas>
           </section>
         <section class="showcase-area" id="home">
+          <h2 style="color: rgb(255, 249, 159); position: relative; left: 80vw; top: 15vh; transform: rotate(15deg);width: max-content;">Mervie</h2>
           <div class="showcase-container">
             <h1 class="main-title" id="title">COMPUTER DEVELOPEMENT</h1>
             <p>specializing in all computer projects from desktop to smartphone</p>
@@ -68,7 +81,8 @@
           </div>
         </section>
         <section id="Mervie">
-          <h2>for all type of screens</h2>
+          <h2 class="typeof">for all type of screens</h2>
+          <h2 style="color: white; position: relative; left: 5vw; top: 0; transform: rotate(57deg);width: max-content;">Mervie</h2>
           <div class="screens-container container">
             <div class="screens-type phone">
               <div class="img-container">
@@ -100,6 +114,7 @@
           </div>
         </section>
         <section id="Categorie">
+          <h2 style="color: white; position: relative; left: 20vw; top: 55vh; transform: rotate(94deg); width: max-content;">Mervie</h2>
           <h2 class="screens-menu-heading">FOR ALL CATEGORIES</h2>
           <div class="screens-menu-container container">
             <div class="screens-menu-item">
@@ -170,6 +185,7 @@
           </div>
         </section>
         <section id="review">
+          <h2 style="color: rgb(250, 0, 0); position: relative; left: 65vw; top: 6vh; transform: rotate(345deg); display: flex; width: max-content;">Mervie</h2>
           <h2 class="testimonial-title">High level creation</h2>
           <div class="testimonial-container container">
             <div class="Apps-options">
@@ -232,6 +248,7 @@
           </div>
         </section>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script>
     emailjs.init("pA0xb1wbjrTTKV0p7"); // Remplacez par votre clé publique
 </script>
@@ -246,8 +263,9 @@
 
   gtag('config', 'G-X8WFQVFS81');
 </script>
-<script src='jeux.js'></script>
+<script src='jeux.js' defer></script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1336558294811026"
      crossorigin="anonymous"></script>
+     <script src="api.js" type="module"></script>
 </body>
 </html>

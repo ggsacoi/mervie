@@ -1,17 +1,137 @@
 const launch = document.querySelector(".launch");
-const map = document.querySelector(".game");
-launch.addEventListener('click', ()=> {
-        map.style.display = "flex";
-});
+const map = document.getElementById("game");
+const SUPABASE_URL = "https://wlmvwbustnfmezngrvhu.supabase.co";  // Remplace par ton URL
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsbXZ3YnVzdG5mbWV6bmdydmh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU1NTMxMTcsImV4cCI6MjA2MTEyOTExN30.4Ox59Y93pcjlV0RTnpANlDInwJe8R9HqdS12a07qfWs";  // Remplace par ta clé
+
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 map.height = window.innerHeight/2;
 map.width = window.innerWidth/2;
 if(window.innerWidth <= 1199) {
     map.height = window.innerHeight;
     map.width = window.innerWidth;
 }
+const nameInput = document.createElement("input");
+    nameInput.type = 'text';
+    nameInput.placeholder = 'entrez votre nom ici';
+    nameInput.style.left = (map.offsetLeft + 1200) + 'px';
+    nameInput.style.top = (map.offsetTop + 690) + 'px';
+    nameInput.style.backgroundColor = 'black';
+    nameInput.style.zIndex = 10;
+    nameInput.style.position = 'fixed';
+    nameInput.style.height = '30px';
+    nameInput.style.borderRadius = '5px';
+    nameInput.style.color = 'white';
+    document.body.appendChild(nameInput);
+    nameInput.style.display = 'none';
+    const nom = nameInput.value;
+launch.addEventListener('click', ()=> {
+        map.style.display = "flex";
+        nameInput.style.display = 'flex';
+});
+nameInput.addEventListener('keydown', async (event) => {
+    // On ne déclenche que si l'utilisateur appuie sur la touche « Enter »
+    if (event.key === 'Enter') {
+      event.preventDefault();                   // Évite tout comportement par défaut
+      const nom = nameInput.value.trim();       // ← Récupère nameInput.value AU BON MOMENT !
+  
+      // Vérification du nom
+      if (nom.length === 0) {
+        return alert("Veuillez entrer un nom valide !");
+      }
+       // Cache le champ de saisie
+       nameInput.style.display = 'none';
+      // Insertion dans Supabase
+            try {
+                // Vérifie si le nom existe déjà dans la base de données
+                const { data: existingUser, error: selectError } = await supabase
+                    .from('podium')
+                    .select('*')
+                    .eq('name', nom)
+                    .single();
+    
+                if (selectError && selectError.code !== 'PGRST116') {
+                    // Si une erreur autre que "aucune ligne trouvée" se produit
+                    throw selectError;
+                }
+    
+                if (existingUser) {
+                    // Si le nom existe déjà
+                    alert('Ton nom est déjà enregistré clique sur OK pour reprendre avec ce nom!');
+                    sessionStorage.setItem('name', nom);
+                    nameInput.style.display = 'none';
+                    return;
+                }
+    
+                // Insère le nouveau nom dans la base de données
+                const { data, error: insertError } = await supabase
+                    .from('podium')
+                    .insert([{ name: nom }]);
+    
+                if (insertError) throw insertError;
+    
+                // Enregistrement réussi
+                nameInput.style.display = 'none';
+                sessionStorage.setItem('name', nom);
+                console.log("Nom enregistré :", data);
+                alert(`Mervie: Wesh ${nom} ! tu peux jouer ✅`);
+            } catch (err) {
+                console.error("Erreur Supabase :", err);
+                alert("Erreur lors de l'enregistrement !");
+            }
+    }
+  });  
+  let topScores = []; // Tableau pour stocker les meilleurs scores
+  let theScore = 0; // Meilleur score
+  let sScore = 0; // Deuxième meilleur score
+  let tScore = 0; // Troisième meilleur score
+  let theName = "Anonyme"; // Nom associé au meilleur score
+  let sName = "Anonyme"; // Nom associé au deuxième meilleur score
+  let tName = "Anonyme"; // Nom associé au troisième meilleur score
+  
+  (async function veriftopScore() {
+      try {
+          const { data: rows, error } = await supabase
+              .from('podium')
+              .select('score, name') // Sélectionne les scores et les noms
+              .order('score', { ascending: false })
+              .limit(3); // Limite à 3 résultats
+  
+          if (error) {
+              console.error('Erreur Supabase lors du select :', error);
+              return; // Arrête l'exécution si une erreur survient
+          }
+  
+          if (rows && rows.length > 0) {
+              // Récupère les scores et noms dans un tableau
+              topScores = rows.map(row => ({
+                  name: row.name || "Anonyme", // Utilise "Anonyme" si le nom est vide
+                  score: parseFloat(row.score) || 0
+              }));
+  
+              // Stocke les scores et noms dans des variables distinctes
+              theScore = topScores[0]?.score || 0; // Meilleur score
+              theName = topScores[0]?.name || "Anonyme"; // Nom associé au meilleur score
+  
+              sScore = topScores[1]?.score || 0; // Deuxième meilleur score
+              sName = topScores[1]?.name || "Anonyme"; // Nom associé au deuxième meilleur score
+  
+              tScore = topScores[2]?.score || 0; // Troisième meilleur score
+              tName = topScores[2]?.name || "Anonyme"; // Nom associé au troisième meilleur score
+  
+              console.log("Les trois meilleurs scores sont :", topScores);
+              console.log(`Meilleur score : ${theScore} (Nom : ${theName})`);
+              console.log(`Deuxième meilleur score : ${sScore} (Nom : ${sName})`);
+              console.log(`Troisième meilleur score : ${tScore} (Nom : ${tName})`);
+          } else {
+              console.log("Aucun score trouvé.");
+          }
+      } catch (err) {
+          console.error('Erreur réseau ou autre exception :', err);
+      }
+  })();
 const context = map.getContext("2d");
-let gravity = 2;
-let velocityX = 1.5;
+let gravity = 2.5;
+let velocityX = 2;
 let decorvelocityX = 0.8;
 let carvelocityX = 0.2;
 let Objects = [];
@@ -202,6 +322,7 @@ function collision() {
    }
 });
 }
+let monScore = 0;
 function gameover() {
     context.fillStyle = 'white';
     const userAgent = window.navigator.userAgent;
@@ -212,6 +333,7 @@ if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
         context.fillText(`swipe right to replay`, 10, map.height-20);
         context.fillText(`clique ici pour quitter`, map.width-140, map.height-40);
         context.fillText(`click here to quite`, map.width-140, map.height-20);
+        context.font = '20px Arial';
         context.fillText(`>>`, map.width/2, map.height-160);
     } else {
         context.font = '20px Arial';
@@ -219,9 +341,10 @@ if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
         context.fillText(`press on S to quite`, map.width-230, map.height-20);
         context.fillText(`clique sur R pour rejouer`, 20, map.height-40);
         context.fillText(`click on R to replay`, 20, map.height-20);
-        context.fillText(`presse Z pour sauter`, 20, map.height-70);
+        context.fillText(`presse Z pour sauter`, map.width/2-90, map.height-120);
+        context.fillText(`press Z to jump`, map.width/2-70, map.height-140);
         context.font = '20px FontAwesome';
-        context.fillText('\uf5e4', 20, map.height-70);
+        context.fillText('\uf062', map.width/2-10, map.height-70);
     }
     if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
     context.font = '20px Candal';
@@ -231,10 +354,35 @@ if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
     context.font = '30px Candal';
     context.fillStyle = 'red';
     context.fillText(`GAME OVER`, map.width/2-90, map.height/2);
+    context.font = '20px Candal';
+    context.fillText(`${theName} highscore:${theScore}`, map.width-225, 30);
+    context.fillStyle = 'skyblue';
+    context.fillText(`${sName} highscore:${sScore}`, map.width-225, 50);
+    context.fillText(`${tName} highscore:${tScore}`, map.width-225, 70);
 }
-map.addEventListener('click', handleQuitClick);
+if (scoreCount > theScore) {
+    alert(`Mervie: dinguerie ta le nouveau record ✅`);
+    saveScore();
+}
+// Met à jour monScore si le score actuel est supérieur
+let savedHighScore = parseInt(sessionStorage.getItem('highestscore')) || 0;
+if (scoreCount > savedHighScore) {
+    sessionStorage.setItem('highestscore', scoreCount);
+    monScore = scoreCount;
+} else {
+    monScore = savedHighScore;
+}
+checkAndInsertScore();
     cancelAnimationFrame(animationFrame);
+    console.log("scoreCount", scoreCount);
+    map.addEventListener('click', handleQuitClick);
+      context.fillStyle = 'white';
+
+    context.font = '20px Arial';
+    context.fillText(`Meilleur score : ${theScore}`, map.width / 2 - 100, map.height / 2 + 80);
+    veriftopScore();
 }
+
 function handleQuitClick(event) {
     const rect = map.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -254,9 +402,138 @@ function score() {
     context.font = '20px Arial';
         context.fillStyle = 'white';
         context.font = '20px Arial';
-    context.fillText(`score: ${scoreCount}`, map.width-125, 30);
+    context.fillText(`score: ${scoreCount}`, 10, 30);
+    context.fillText(`record: ${monScore}`, 10, 50);
+    context.font = '20px Candal';
+    context.fillStyle = 'red';
+}
+async function saveScore() {
+    console.log("🔔 saveScore() appelée !");
+    const Nname = sessionStorage.getItem('name'); // Récupère le nom de session
+
+    try {
+        if (!Nname) {
+            console.error("❌ Aucun nom trouvé dans la session !");
+            return;
+        }
+
+        // Étape 1 : Vérifie si le nom existe déjà dans la base de données
+        const { data: existingUser, error: selectError } = await supabase
+            .from('podium')
+            .select('*')
+            .eq('name', Nname)
+            .single(); // Récupère une seule ligne
+
+        if (selectError && selectError.code !== 'PGRST116') {
+            // Si une erreur autre que "aucune ligne trouvée" se produit
+            throw selectError;
+        }
+
+        if (existingUser) {
+            // Vérifie si le score existant est supérieur au score actuel
+            if (existingUser.score > scoreCount) {
+                console.log(`❌ Pas de mise à jour : le score existant (${existingUser.score}) est supérieur à ${scoreCount}.`);
+                return;
+            }
+
+            // Étape 2 : Si le score existant est inférieur ou égal, met à jour le score
+            const { data: updatedData, error: updateError } = await supabase
+                .from('podium')
+                .update({ score: scoreCount }) // Met à jour le score
+                .eq('name', Nname); // Filtre par le nom
+
+            if (updateError) throw updateError;
+
+            console.log("✅ Score mis à jour :", updatedData);
+        } else {
+            // Étape 3 : Si le nom n'existe pas, insère une nouvelle ligne
+            const { data: insertedData, error: insertError } = await supabase
+                .from('podium')
+                .insert([{ name: Nname, score: scoreCount }]); // Insère un nouveau score
+
+            if (insertError) throw insertError;
+
+            console.log("✅ Nouveau score inséré :", insertedData);
+        }
+    } catch (err) {
+        console.error("🔥 Exception dans saveScore() :", err);
+    }
+}
+async function checkAndInsertScore() {
+    console.log("🔍 Vérification du score...");
+    const Nname = sessionStorage.getItem('name'); // Récupère le nom de session
+
+    try {
+        if (!Nname) {
+            console.error("❌ Aucun nom trouvé dans la session !");
+            return;
+        }
+
+        // Étape 1 : Récupère les trois meilleurs scores
+        const { data: topScores, error: selectError } = await supabase
+            .from('podium')
+            .select('score, name') // Sélectionne les scores et les noms
+            .order('score', { ascending: false }) // Trie par score décroissant
+            .limit(3); // Limite à 3 résultats
+
+        if (selectError) {
+            console.error("❌ Erreur lors de la récupération des scores :", selectError);
+            return;
+        }
+
+        console.log("🔝 Les trois meilleurs scores :", topScores);
+
+        // Étape 2 : Vérifie si le joueur existe déjà dans la base de données
+        const { data: existingUser, error: userError } = await supabase
+            .from('podium')
+            .select('score')
+            .eq('name', Nname)
+            .single();
+
+        if (userError && userError.code !== 'PGRST116') {
+            console.error("❌ Erreur lors de la vérification de l'utilisateur :", userError);
+            return;
+        }
+
+        if (existingUser) {
+            // Vérifie si le score existant est supérieur au score actuel
+            if (existingUser.score > scoreCount) {
+                console.log(`❌ Pas de mise à jour : le score existant (${existingUser.score}) est supérieur à ${scoreCount}.`);
+                return;
+            }
+
+            // Étape 3 : Met à jour le score si le score actuel est supérieur ou égal
+            const { data: updatedData, error: updateError } = await supabase
+                .from('podium')
+                .update({ score: scoreCount }) // Met à jour le score
+                .eq('name', Nname); // Filtre par le nom
+
+            if (updateError) {
+                console.error("❌ Erreur lors de la mise à jour du score :", updateError);
+                return;
+            }
+
+            console.log("✅ Score mis à jour :", updatedData);
+        } else {
+            // Étape 4 : Si le joueur n'existe pas, insère un nouveau score
+            const { data: insertedData, error: insertError } = await supabase
+                .from('podium')
+                .insert([{ name: Nname, score: scoreCount }]); // Insère un nouveau score
+
+            if (insertError) {
+                console.error("❌ Erreur lors de l'insertion du score :", insertError);
+                return;
+            }
+
+            console.log("✅ Nouveau score inséré :", insertedData);
+        }
+    } catch (err) {
+        console.error("🔥 Exception dans checkAndInsertScore() :", err);
+    }
 }
 function initializeObstacles() {
+    // Restaure monScore depuis sessionStorage
+    monScore = parseInt(sessionStorage.getItem('highestscore')) || 0;
     obstacleM();
     obstacleL();
     upstacleH();
@@ -367,6 +644,7 @@ function animate() {
     animation = requestAnimationFrame(animate);
     scoreCount += 1;
 }
+
 function drawDecor13() {
     const decor13 = trucs.find(truc => truc.icon === "\uf5e4"); // Trouve decor13
     if (decor13) {
@@ -390,6 +668,7 @@ function reloadAnimation() {
     drawdecor();
     movedecor();
     animation = requestAnimationFrame(animate);
+    nameInput.style.display = "none";
 }
 let touchStartX = 0;
 let touchEndX = 0;

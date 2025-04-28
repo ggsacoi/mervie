@@ -8,6 +8,25 @@
     text-decoration: none;
     touch-action: manipulation;
 }
+.Box {
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    width: max-content;
+    position: fixed;
+    right: -190px;
+    top: calc(100vh - 60px);
+}
+.eye {
+    width: 60px;
+    height: 60px;
+    background-image: url("istockphoto-519828383-612x612.jpg");
+    background-size: cover;
+    border: none;
+}
+.avatar {
+    width: 250px;
+}
 .navbar {
     z-index: 2;
     top: 0;
@@ -220,7 +239,7 @@
     background-repeat: no-repeat;
 }
 
-#Mervie h2 {
+#Mervie .typeof {
     text-align: center;
     font-size: 2.5rem;
     font-weight: 400;
@@ -577,7 +596,7 @@ a:hover {
     color: #000;
 }
 
-.game {
+#game {
     position: fixed;
     display: none;
     top: 50%;
@@ -760,7 +779,7 @@ a:hover {
         text-transform: uppercase;
         text-align: center;
     }
-    h2 {
+    .typeof {
         font-size: 3vw;
     }
     .link-primary {
@@ -876,7 +895,7 @@ a:hover {
 
     }
 
-    .form-container h2 {
+    .form-container .typeofscreens {
         font-size: 100%;
     }
 

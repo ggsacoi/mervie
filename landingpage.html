@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inscription</title>
+    <link rel="stylesheet" href="signin.css">
+</head>
+<body>
+            <h1 class="title">Sign in</h1>
+            <div class="lezebla">
+                <button id="authbtn" onclick="client.requestCode();">Authorize with Google</button>
+                <button class="kombo" type="text" placeholder="lastname" id="lastname">email</button>
+            </div>
+            <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+      <script src="https://kit.fontawesome.com/d28f9485ed.js" crossorigin="anonymous"></script>
+        <script src="login.js" type="module"></script>
+</body>
+</html>
