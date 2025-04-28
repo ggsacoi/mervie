@@ -82,11 +82,15 @@ nameInput.addEventListener('keydown', async (event) => {
   });  
   let topScores = []; // Tableau pour stocker les meilleurs scores
   let theScore = 0; // Meilleur score
-  let sScore = 0; // Deuxième meilleur score
-  let tScore = 0; // Troisième meilleur score
+  let sScore = 0;
+  let tScore = 0;
+  let qScore = 0;
+  let cScore = 0;
   let theName = "Anonyme"; // Nom associé au meilleur score
-  let sName = "Anonyme"; // Nom associé au deuxième meilleur score
-  let tName = "Anonyme"; // Nom associé au troisième meilleur score
+  let sName = "Anonyme";
+  let tName = "Anonyme";
+  let qName = "Anonyme";
+  let cName = "Anonyme";
   
   (async function veriftopScore() {
       try {
@@ -94,7 +98,7 @@ nameInput.addEventListener('keydown', async (event) => {
               .from('podium')
               .select('score, name') // Sélectionne les scores et les noms
               .order('score', { ascending: false })
-              .limit(3); // Limite à 3 résultats
+              .limit(5); // Limite à 3 résultats
   
           if (error) {
               console.error('Erreur Supabase lors du select :', error);
@@ -109,19 +113,20 @@ nameInput.addEventListener('keydown', async (event) => {
               }));
   
               // Stocke les scores et noms dans des variables distinctes
-              theScore = topScores[0]?.score || 0; // Meilleur score
-              theName = topScores[0]?.name || "Anonyme"; // Nom associé au meilleur score
+              theScore = topScores[0]?.score || 0;
+              theName = topScores[0]?.name || "Anonyme";
   
-              sScore = topScores[1]?.score || 0; // Deuxième meilleur score
-              sName = topScores[1]?.name || "Anonyme"; // Nom associé au deuxième meilleur score
+              sScore = topScores[1]?.score || 0;
+              sName = topScores[1]?.name || "Anonyme";
   
-              tScore = topScores[2]?.score || 0; // Troisième meilleur score
-              tName = topScores[2]?.name || "Anonyme"; // Nom associé au troisième meilleur score
-  
-              console.log("Les trois meilleurs scores sont :", topScores);
-              console.log(`Meilleur score : ${theScore} (Nom : ${theName})`);
-              console.log(`Deuxième meilleur score : ${sScore} (Nom : ${sName})`);
-              console.log(`Troisième meilleur score : ${tScore} (Nom : ${tName})`);
+              tScore = topScores[2]?.score || 0;
+              tName = topScores[2]?.name || "Anonyme";
+
+              qScore = topScores[3]?.score || 0;
+              qName = topScores[3]?.name || "Anonyme";
+
+              cScore = topScores[4]?.score || 0;
+              cName = topScores[4]?.name || "Anonyme";
           } else {
               console.log("Aucun score trouvé.");
           }
@@ -350,6 +355,12 @@ if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
     context.font = '20px Candal';
     context.fillStyle = 'red';
     context.fillText(`GAME OVER`, map.width/2-50, map.height/2);
+    context.fillText(`${theName} highscore:${theScore}`, map.width-225, 30);
+    context.fillStyle = 'skyblue';
+    context.fillText(`${sName}  highscore:${sScore}`, map.width-225, 50);
+    context.fillText(`${tName}  highscore:${tScore}`, map.width-225, 70);
+    context.fillText(`${qName}  highscore:${qScore}`, map.width-225, 90);
+    context.fillText(`${cName}  highscore:${cScore}`, map.width-225, 110);
 }   else {
     context.font = '30px Candal';
     context.fillStyle = 'red';
@@ -357,8 +368,10 @@ if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
     context.font = '20px Candal';
     context.fillText(`${theName} highscore:${theScore}`, map.width-225, 30);
     context.fillStyle = 'skyblue';
-    context.fillText(`${sName} highscore:${sScore}`, map.width-225, 50);
-    context.fillText(`${tName} highscore:${tScore}`, map.width-225, 70);
+    context.fillText(`${sName}  highscore:${sScore}`, map.width-225, 50);
+    context.fillText(`${tName}  highscore:${tScore}`, map.width-225, 70);
+    context.fillText(`${qName}  highscore:${qScore}`, map.width-225, 90);
+    context.fillText(`${cName}  highscore:${cScore}`, map.width-225, 110);
 }
 if (scoreCount > theScore) {
     alert(`Mervie: dinguerie ta le nouveau record ✅`);
@@ -380,7 +393,6 @@ checkAndInsertScore();
 
     context.font = '20px Arial';
     context.fillText(`Meilleur score : ${theScore}`, map.width / 2 - 100, map.height / 2 + 80);
-    veriftopScore();
 }
 
 function handleQuitClick(event) {
@@ -691,6 +703,12 @@ document.addEventListener('keydown', (e) => {
         frameCount = 0;
     }
     if(e.code == 'KeyR') {
+        const name = sessionStorage.getItem('name');
+
+        if (!name) {
+            alert("Mervie: Veuillez entrer un nom avant de recommencer !");
+            return;
+        }
        reloadAnimation();
     }
 });
