@@ -355,6 +355,7 @@ if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
     context.font = '20px Candal';
     context.fillStyle = 'red';
     context.fillText(`GAME OVER`, map.width/2-50, map.height/2);
+    context.font = '10px Candal';
     context.fillText(`${theName} highscore:${theScore}`, map.width-225, 30);
     context.fillStyle = 'skyblue';
     context.fillText(`${sName}  highscore:${sScore}`, map.width-225, 50);
