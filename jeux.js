@@ -359,8 +359,6 @@ if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
     context.fillStyle = 'skyblue';
     context.fillText(`${sName}  highscore:${sScore}`, map.width-225, 50);
     context.fillText(`${tName}  highscore:${tScore}`, map.width-225, 70);
-    context.fillText(`${qName}  highscore:${qScore}`, map.width-225, 90);
-    context.fillText(`${cName}  highscore:${cScore}`, map.width-225, 110);
 }   else {
     context.font = '30px Candal';
     context.fillStyle = 'red';
@@ -370,8 +368,6 @@ if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
     context.fillStyle = 'skyblue';
     context.fillText(`${sName}  highscore:${sScore}`, map.width-225, 50);
     context.fillText(`${tName}  highscore:${tScore}`, map.width-225, 70);
-    context.fillText(`${qName}  highscore:${qScore}`, map.width-225, 90);
-    context.fillText(`${cName}  highscore:${cScore}`, map.width-225, 110);
 }
 if (scoreCount > theScore) {
     alert(`Mervie: dinguerie ta le nouveau record ✅`);
