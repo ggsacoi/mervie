@@ -4,6 +4,24 @@ const SUPABASE_URL = "https://wlmvwbustnfmezngrvhu.supabase.co";  // Remplace pa
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsbXZ3YnVzdG5mbWV6bmdydmh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU1NTMxMTcsImV4cCI6MjA2MTEyOTExN30.4Ox59Y93pcjlV0RTnpANlDInwJe8R9HqdS12a07qfWs";  // Remplace par ta clé
 
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+function adjustCanvasResolution() {
+    const ratio = window.devicePixelRatio || 1; // Récupère le ratio de pixels de l'écran
+    const canvas = map; // Votre élément canvas
+    const context = canvas.getContext("2d");
+
+    // Sauvegarde les dimensions CSS actuelles
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+
+    // Ajuste la taille du canvas en fonction du ratio
+    canvas.width = width * ratio;
+    canvas.height = height * ratio;
+
+    // Ajuste l'échelle du contexte pour correspondre au ratio
+    context.scale(ratio, ratio);
+
+    console.log(`Canvas ajusté : ${canvas.width}x${canvas.height} (ratio : ${ratio})`);
+}
 map.height = window.innerHeight/2;
 map.width = window.innerWidth/2;
 if(window.innerWidth <= 1199) {
@@ -639,6 +657,7 @@ function rotationdetection() {
     }
 }
 function animate() {
+    adjustCanvasResolution();
     space();
     thesun();
     blaze();

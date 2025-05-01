@@ -60,10 +60,10 @@ body {
     flex-direction: column;
     gap: 50px;
     position: fixed;
-    height: max-content;
-    min-width: 400px;
-    width:cover;
+    max-height: cover;
+    min-width: cover;
     left: 0;
+    border: solid 1px  rgb(0, 62, 66);
 }
 .eloko {
     display: flex;
@@ -123,6 +123,7 @@ body {
     width: max-content;
     position: fixed;
     right: 0;
+    border: solid 1px  rgb(0, 62, 66);
 }
 .pfp {
     color: white;
@@ -209,6 +210,10 @@ body {
 }
 .subject {
     border-radius: 10px;
+    height: fit-content; 
+    width: 300px; 
+    display: flex; 
+    margin-top: 60px;
 }.propre {
     display: flex;
     flex-direction: column;
@@ -219,4 +224,33 @@ body {
     align-items: center;
     border: solid 1px gray;
     position: relative;
+}
+.wrote {
+    display: flex; 
+    flex-direction: row;
+    height: 35px; 
+    width: max-content;
+}
+.top {
+    display: flex; 
+    flex-direction: column; 
+    height: 70px; 
+    width: max-content;
+}
+.wrotecontentB {
+    margin: none; 
+    background-color: black; 
+    width: 600px; 
+    height: 35px; 
+    border-radius: 17.5px; 
+    border: solid 2px skyblue;
+}
+.wrotecontentW {
+    margin-left: 20px; 
+    background-color: rgb(255, 255, 255); 
+    width: 100px; 
+    height: 35px; 
+    border-radius: 17.5px; 
+    border: solid 2px rgb(255, 255, 255); 
+    color: black;
 }
