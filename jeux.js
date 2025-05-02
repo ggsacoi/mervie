@@ -27,19 +27,12 @@ const nameInput = document.createElement("input");
     nameInput.style.display = 'none';
     const nom = nameInput.value;
 launch.addEventListener('click', ()=> {
-    const userAgent = window.navigator.userAgent;
-
-    if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
-        nameInput.style.display = 'flex';
-        nameInput.focus(); // Met le focus sur l'input
-    } else {
-        // Si ce n'est pas un appareil mobile, démarre directement le jeu
         map.style.display = "flex";
         nameInput.style.display = 'flex';
-    }
 });
 nameInput.addEventListener('keydown', async (event) => {
     // On ne déclenche que si l'utilisateur appuie sur la touche « Enter »
+    const userLanguage = navigator.language || navigator.userLanguage;
     if (event.key === 'Enter') {
         event.preventDefault(); // Évite tout comportement par défaut
         const nom = nameInput.value.trim(); // Récupère la valeur de l'input
