@@ -13,12 +13,14 @@ if(window.innerWidth <= 1199) {
 const nameInput = document.createElement("input");
     nameInput.type = 'text';
     nameInput.placeholder = 'entrez votre nom ici';
-    nameInput.style.left = (map.offsetLeft + 1200) + 'px';
-    nameInput.style.top = (map.offsetTop + 690) + 'px';
+    nameInput.style.left = (map.offsetLeft + 1155) + 'px';
+    nameInput.style.top = (map.offsetTop + 685) + 'px';
+    nameInput.style.fontSize = '20px';
     nameInput.style.backgroundColor = 'black';
+    nameInput.style.textAlign = 'center';
     nameInput.style.zIndex = 10;
     nameInput.style.position = 'fixed';
-    nameInput.style.height = '30px';
+    nameInput.style.height = '40px';
     nameInput.style.borderRadius = '5px';
     nameInput.style.color = 'white';
     document.body.appendChild(nameInput);
@@ -27,9 +29,7 @@ const nameInput = document.createElement("input");
 launch.addEventListener('click', ()=> {
     const userAgent = window.navigator.userAgent;
 
-    // Vérifie si l'utilisateur est sur un appareil mobile
     if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
-        // Affiche le champ de saisie pour entrer le nom
         nameInput.style.display = 'flex';
         nameInput.focus(); // Met le focus sur l'input
     } else {
@@ -41,55 +41,58 @@ launch.addEventListener('click', ()=> {
 nameInput.addEventListener('keydown', async (event) => {
     // On ne déclenche que si l'utilisateur appuie sur la touche « Enter »
     if (event.key === 'Enter') {
-      event.preventDefault();                   // Évite tout comportement par défaut
-      const nom = nameInput.value.trim();       // ← Récupère nameInput.value AU BON MOMENT !
-  
-      // Vérification du nom
-      if (nom.length === 0) {
-        return alert("Veuillez entrer un nom valide !");
-      }
-       // Cache le champ de saisie
-       nameInput.style.display = 'none';
-      // Insertion dans Supabase
-            try {
-                // Vérifie si le nom existe déjà dans la base de données
-                const { data: existingUser, error: selectError } = await supabase
-                    .from('podium')
-                    .select('*')
-                    .eq('name', nom)
-                    .single();
-    
-                if (selectError && selectError.code !== 'PGRST116') {
-                    // Si une erreur autre que "aucune ligne trouvée" se produit
-                    throw selectError;
-                }
-    
-                if (existingUser) {
-                    // Si le nom existe déjà
-                    alert('Ton nom est déjà enregistré clique sur OK pour reprendre avec ce nom!');
-                    sessionStorage.setItem('name', nom);
-                    nameInput.style.display = 'none';
-                    return;
-                }
-    
-                // Insère le nouveau nom dans la base de données
-                const { data, error: insertError } = await supabase
-                    .from('podium')
-                    .insert([{ name: nom }]);
-    
-                if (insertError) throw insertError;
-    
-                // Enregistrement réussi
-                nameInput.style.display = 'none';
-                sessionStorage.setItem('name', nom);
-                console.log("Nom enregistré :", data);
-                alert(`Mervie: Wesh ${nom} ! tu peux jouer ✅`);
-            } catch (err) {
-                console.error("Erreur Supabase :", err);
-                alert("Erreur lors de l'enregistrement !");
+        event.preventDefault(); // Évite tout comportement par défaut
+        const nom = nameInput.value.trim(); // Récupère la valeur de l'input
+
+        // Vérifie si le champ est vide
+        if (nom.length === 0) {
+            return alert("Veuillez entrer un nom valide !");
+        }
+
+        // Cache le champ de saisie
+        nameInput.style.display = 'none';
+
+        // Enregistre le nom dans la session
+        sessionStorage.setItem('name', nom);
+
+        // Insertion dans Supabase
+        try {
+            // Vérifie si le nom existe déjà dans la base de données
+            const { data: existingUser, error: selectError } = await supabase
+                .from('podium')
+                .select('*')
+                .eq('name', nom)
+                .single();
+
+            if (selectError && selectError.code !== 'PGRST116') {
+                // Si une erreur autre que "aucune ligne trouvée" se produit
+                throw selectError;
             }
+
+            if (existingUser) {
+                // Si le nom existe déjà
+                alert('Ton nom est déjà enregistré, clique sur OK pour reprendre avec ce nom !');
+                isNameValidated = true; // Active la possibilité d'utiliser KeyR
+                return;
+            }
+
+            // Insère le nouveau nom dans la base de données
+            const { data, error: insertError } = await supabase
+                .from('podium')
+                .insert([{ name: nom }]);
+
+            if (insertError) throw insertError;
+
+            // Enregistrement réussi
+            console.log("Nom enregistré :", data);
+            alert(`Mervie: Wesh ${nom} ! tu peux jouer ✅`);
+            isNameValidated = true; // Active la possibilité d'utiliser KeyR
+        } catch (err) {
+            console.error("Erreur Supabase :", err);
+            alert("Erreur lors de l'enregistrement !");
+        }
     }
-  });  
+});
   let topScores = []; // Tableau pour stocker les meilleurs scores
   let theScore = 0; // Meilleur score
   let sScore = 0;
@@ -713,21 +716,13 @@ document.addEventListener('keydown', (e) => {
         isAnimating = true;
         frameCount = 0;
     }
-    if(e.code == 'KeyR') {
-        const name = sessionStorage.getItem('name');
-
-        if (!name) {
-            alert("Mervie: Veuillez entrer un nom avant de recommencer !");
-            return;
+        if (e.code === 'KeyR' && isNameValidated) {
+            reloadAnimation(); // Recharge l'animation
         }
-       reloadAnimation();
-    }
-});
-document.addEventListener('keydown', (e) => {
-        if (e.code === 'KeyS') {
+        if (e.code === 'KeyS' && isNameValidated) {
         map.style.display = "none";
     }
-});
+    });
 function leavethegame() {
     console.log("Quitter le jeu");
     map.style.display = "none"; // Cache le canvas
