@@ -13,6 +13,7 @@ if(window.innerWidth <= 1199) {
 const nameInput = document.createElement("input");
     nameInput.type = 'text';
     nameInput.placeholder = 'entrez votre nom ici';
+    nameInput.maxLength = 10;
     nameInput.style.left = (map.offsetLeft + 1155) + 'px';
     nameInput.style.top = (map.offsetTop + 685) + 'px';
     nameInput.style.fontSize = '20px';
@@ -344,10 +345,10 @@ if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
     context.fillStyle = 'red';
     context.fillText(`GAME OVER`, map.width/2-90, map.height/2);
     context.font = '20px Candal';
-    context.fillText(`${theName} highscore:${theScore}`, map.width-225, 30);
+    context.fillText(`${theName} highscore:${theScore}`, map.width-320, 30);
     context.fillStyle = 'skyblue';
-    context.fillText(`${sName}  highscore:${sScore}`, map.width-225, 50);
-    context.fillText(`${tName}  highscore:${tScore}`, map.width-225, 70);
+    context.fillText(`${sName}  highscore:${sScore}`, map.width-320, 50);
+    context.fillText(`${tName}  highscore:${tScore}`, map.width-320, 70);
 }
 if (scoreCount > theScore) {
     alert(`Mervie: dinguerie ta le nouveau record ✅`);
@@ -392,8 +393,8 @@ function score() {
     } else {
         context.fillStyle = 'white';
         context.font = '20px Arial';
-    context.fillText(`score: ${scoreCount}`, 10, 30);
-    context.fillText(`record: ${monScore}`, 10, 50);
+    context.fillText(`score: ${scoreCount}`, 160, 30);
+    context.fillText(`record: ${monScore}`, 160, 50);
     }
 }
 async function saveScore() {
