@@ -309,6 +309,40 @@ function collision() {
 });
 }
 let monScore = 0;
+function drawHighScore() {
+    const text = `${theName} highscore: ${theScore}`;
+    const textWidth = context.measureText(text).width; // Mesure la largeur du texte
+
+    // Si le texte dépasse la largeur du canvas, ajuste la position X
+    let positionX = map.width - textWidth;
+    if (positionX < 0) {
+        positionX = 0; // Assure que le texte reste visible
+    }
+
+    context.fillText(text, positionX-20, 30); // Dessine le texte à la position ajustée
+}
+function secondScore() {
+    const text = `${sName} highscore: ${sScore}`;
+    const textWidth = context.measureText(text).width; 
+
+    let positionX = map.width - textWidth;
+    if (positionX < 0) {
+        positionX = 0;
+    }
+
+    context.fillText(text, positionX-20, 50);
+}
+function thirdScore() {
+    const text = `${tName} highscore: ${tScore}`;
+    const textWidth = context.measureText(text).width;
+
+    let positionX = map.width - textWidth;
+    if (positionX < 0) {
+        positionX = 0;
+    }
+
+    context.fillText(text, positionX-20, 70);
+}
 function gameover() {
     context.fillStyle = 'white';
     const userAgent = window.navigator.userAgent;
@@ -345,10 +379,10 @@ if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
     context.fillStyle = 'red';
     context.fillText(`GAME OVER`, map.width/2-90, map.height/2);
     context.font = '20px Candal';
-    context.fillText(`${theName} highscore:${theScore}`, map.width-320, 30);
+    drawHighScore();
     context.fillStyle = 'skyblue';
-    context.fillText(`${sName}  highscore:${sScore}`, map.width-320, 50);
-    context.fillText(`${tName}  highscore:${tScore}`, map.width-320, 70);
+    secondScore();
+    thirdScore();
 }
 if (scoreCount > theScore) {
     alert(`Mervie: dinguerie ta le nouveau record ✅`);
@@ -393,8 +427,8 @@ function score() {
     } else {
         context.fillStyle = 'white';
         context.font = '20px Arial';
-    context.fillText(`score: ${scoreCount}`, 160, 30);
-    context.fillText(`record: ${monScore}`, 160, 50);
+    context.fillText(`score: ${scoreCount}`, 20, 30);
+    context.fillText(`record: ${monScore}`, 20, 50);
     }
 }
 async function saveScore() {
