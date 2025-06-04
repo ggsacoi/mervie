@@ -28,8 +28,9 @@ const nameInput = document.createElement("input");
 launch.addEventListener('click', ()=> {
         map.style.display = "flex";
         nameInput.style.display = 'flex';
-        nameInput.style.left = '50vw';
-        nameInput.style.top = '50vh';
+        nameInput.style.left = '50%';
+        nameInput.style.top = '50%';
+        nameInput.style.transform = 'translate(-50%, -50%)';
 });
 nameInput.addEventListener('keydown', async (event) => {
     const userLanguage = navigator.language || navigator.userLanguage;
