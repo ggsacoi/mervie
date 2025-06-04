@@ -14,8 +14,6 @@ const nameInput = document.createElement("input");
     nameInput.type = 'text';
     nameInput.placeholder = 'entrez votre nom ici';
     nameInput.maxLength = 10;
-    nameInput.style.left = (map.offsetLeft + 1155) + 'px';
-    nameInput.style.top = (map.offsetTop + 685) + 'px';
     nameInput.style.fontSize = '20px';
     nameInput.style.backgroundColor = 'black';
     nameInput.style.textAlign = 'center';
@@ -30,6 +28,8 @@ const nameInput = document.createElement("input");
 launch.addEventListener('click', ()=> {
         map.style.display = "flex";
         nameInput.style.display = 'flex';
+        nameInput.style.left = '50vw';
+        nameInput.style.top = '50vh';
 });
 nameInput.addEventListener('keydown', async (event) => {
     const userLanguage = navigator.language || navigator.userLanguage;
