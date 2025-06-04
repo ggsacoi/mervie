@@ -56,6 +56,7 @@ nameInput.addEventListener('keydown', async (event) => {
             if (existingUser) {
                 alert('Ton nom est déjà enregistré, clique sur OK pour reprendre avec ce nom !');
                 isNameValidated = true;
+                reloadAnimation();
                 return;
             }
             const { data, error: insertError } = await supabase
@@ -65,6 +66,7 @@ nameInput.addEventListener('keydown', async (event) => {
             console.log("Nom enregistré :", data);
             alert(`Mervie: Wesh ${nom} ! tu peux jouer ✅`);
             isNameValidated = true;
+            reloadAnimation();
         } catch (err) {
             console.error("Erreur Supabase :", err);
             alert("Erreur lors de l'enregistrement !");
@@ -634,7 +636,7 @@ function animate() {
     drawObstacles();
     collision();
     rotationdetection();
-    animation = requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
     scoreCount += 1;
 }
 
