@@ -4,8 +4,8 @@ const SUPABASE_URL = "https://wlmvwbustnfmezngrvhu.supabase.co";  // Remplace pa
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsbXZ3YnVzdG5mbWV6bmdydmh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU1NTMxMTcsImV4cCI6MjA2MTEyOTExN30.4Ox59Y93pcjlV0RTnpANlDInwJe8R9HqdS12a07qfWs";  // Remplace par ta clé
 
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-map.height = window.innerHeight/2;
-map.width = window.innerWidth/2;
+map.height = 720;
+map.width = 1280;
 if(window.innerWidth <= 1199) {
     map.height = window.innerHeight;
     map.width = window.innerWidth;
@@ -164,7 +164,7 @@ function space() {
 }
 function ground() {
     const ground = map.getContext('2d');
-    ground.height = window.innerWidth/2;
+    ground.height = map.width;
     if(window.innerWidth <= 1199 || window.innerHeight <= 910) {
         ground.height = window.innerWidth;
      }
@@ -228,7 +228,7 @@ function decor13() {
 }
 function rood() {
     const roodup = map.getContext('2d');
-    roodup.height = window.innerWidth/2;
+    roodup.height = map.width;
     if(window.innerWidth <= 1199 || window.innerHeight <= 910) {
         roodup.height = window.innerWidth;
      }
@@ -236,7 +236,7 @@ function rood() {
     roodup.fillStyle = 'white';
     roodup.fillRect(0, map.height/2+30, roodup.height, roodup.width);
     const rood = map.getContext('2d');
-    rood.height = window.innerWidth/2;
+    rood.height = map.width;
     if(window.innerWidth <= 1199 || window.innerHeight <= 910) {
         rood.height = window.innerWidth;
      }
