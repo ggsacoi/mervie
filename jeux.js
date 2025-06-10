@@ -138,7 +138,7 @@ let building = {
 };
 let sun = {
     x: map.width/4,
-    y: map.height/4,
+    y: map.height/8,
     color: "skyblue",
     icon: "\uf6c3",
     vitesseX: 0.004
@@ -500,7 +500,7 @@ function initializeObstacles() {
     upstacleH();
     upstacle();
 }
-function thesun() {
+function themoon() {
     ctx.font = "30px FontAwesome";
     ctx.fillStyle = sun.color;
     ctx.fillText(sun.icon, sun.x, sun.y);
@@ -516,8 +516,8 @@ let decorHieght = (/Mobi|Android|iPhone|iPod/i.test(userAgent)) ? map.height / 2
 let decorpositionY = (/Mobi|Android|iPhone|iPod/i.test(userAgent)) ? 100 : 0;
 
 let decorations = [
-    { x: 0, y: decorpositionY, width: decorWidth, height: decorHieght, image: "c7d972cb5aab0dabfb45aff0cf07a07d.png", velocityX: decorvelocityX },
-    { x: decorX, y: decorpositionY, width: decorWidth, height: decorHieght, image: "c7d972cb5aab0dabfb45aff0cf07a07d.png", velocityX: decorvelocityX }
+    { x: 0, y: decorpositionY, width: decorWidth, height: decorHieght, image: "abstract-night-city-building-scene-600nw-2076615607.webp", velocityX: decorvelocityX },
+    { x: decorX, y: decorpositionY, width: decorWidth, height: decorHieght, image: "abstract-night-city-building-scene-600nw-2076615607.webp", velocityX: decorvelocityX }
 ];
 
 function drawdecor() {
@@ -616,10 +616,10 @@ function rotationdetection() {
 }
 function animate() {
     space();
-    thesun();
+    drawdecor();
+    themoon();
     blaze();
     aka();
-    drawdecor();
     movedecor();
     movecar();
     ground();
@@ -654,7 +654,7 @@ function reloadAnimation() {
     initializeObstacles();
     mainobject();
     score();
-    thesun();
+    themoon();
     blaze();
     drawdecor();
     movedecor();
