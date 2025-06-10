@@ -1,7 +1,8 @@
 const launch = document.querySelector(".launch");
 const map = document.getElementById("game");
 const SUPABASE_URL = "https://wlmvwbustnfmezngrvhu.supabase.co";  // Remplace par ton URL
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsbXZ3YnVzdG5mbWV6bmdydmh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU1NTMxMTcsImV4cCI6MjA2MTEyOTExN30.4Ox59Y93pcjlV0RTnpANlDInwJe8R9HqdS12a07qfWs";  // Remplace par ta clé
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsbXZ3YnVzdG5mbWV6bmdydmh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU1NTMxMTcsImV4cCI6MjA2MTEyOTExN30.4Ox59Y93pcjlV0RTnpANlDInwJe8R9HqdS12a07qfWs";
+const userAgent = window.navigator.userAgent;
 
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 map.height = 720;
@@ -118,7 +119,7 @@ nameInput.addEventListener('keydown', async (event) => {
           console.error('Erreur réseau ou autre exception :', err);
       }
   })();
-const context = map.getContext("2d");
+const ctx = map.getContext("2d");
 let gravity = 2.5;
 let velocityX = 2;
 let decorvelocityX = 0.8;
@@ -159,8 +160,8 @@ function randomXPosition(options) {
 }
 function space() {
     map;
-    context.fillStyle = "black";
-    context.fillRect(0, 0, map.width, map.height);
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, map.width, map.height);
 }
 function ground() {
     const ground = map.getContext('2d');
@@ -256,8 +257,8 @@ function moveobjects() {
 }
 function drawObstacles() {
     Objects.forEach((obj) => {
-        context.fillStyle = obj.color;
-        context.fillRect(obj.x, obj.y, obj.width, obj.height);
+        ctx.fillStyle = obj.color;
+        ctx.fillRect(obj.x, obj.y, obj.width, obj.height);
     });
 }
 function collision() {
@@ -278,7 +279,7 @@ function collision() {
 let monScore = 0;
 function drawHighScore() {
     const text = `${theName} highscore: ${theScore}`;
-    const textWidth = context.measureText(text).width; // Mesure la largeur du texte
+    const textWidth = ctx.measureText(text).width; // Mesure la largeur du texte
 
     // Si le texte dépasse la largeur du canvas, ajuste la position X
     let positionX = map.width - textWidth;
@@ -286,68 +287,68 @@ function drawHighScore() {
         positionX = 0; // Assure que le texte reste visible
     }
 
-    context.fillText(text, positionX-20, 30); // Dessine le texte à la position ajustée
+    ctx.fillText(text, positionX-20, 30); // Dessine le texte à la position ajustée
 }
 function secondScore() {
     const text = `${sName} highscore: ${sScore}`;
-    const textWidth = context.measureText(text).width; 
+    const textWidth = ctx.measureText(text).width; 
 
     let positionX = map.width - textWidth;
     if (positionX < 0) {
         positionX = 0;
     }
 
-    context.fillText(text, positionX-20, 50);
+    ctx.fillText(text, positionX-20, 50);
 }
 function thirdScore() {
     const text = `${tName} highscore: ${tScore}`;
-    const textWidth = context.measureText(text).width;
+    const textWidth = ctx.measureText(text).width;
 
     let positionX = map.width - textWidth;
     if (positionX < 0) {
         positionX = 0;
     }
 
-    context.fillText(text, positionX-20, 70);
+    ctx.fillText(text, positionX-20, 70);
 }
 function gameover() {
-    context.fillStyle = 'white';
+    ctx.fillStyle = 'white';
     const userAgent = window.navigator.userAgent;
 if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
-        context.font = '15px Arial';
-        context.fillText(`glisse vers la droite pour rejouer`, 10, map.height-40);
-        context.fillText(`swipe right to replay`, 10, map.height-20);
-        context.fillText(`clique ici pour quitter`, map.width-140, map.height-40);
-        context.fillText(`click here to quite`, map.width-140, map.height-20);
-        context.font = '20px Arial';
-        context.fillText(`>>`, map.width/2, map.height-160);
+        ctx.font = '15px Arial';
+        ctx.fillText(`glisse vers la droite pour rejouer`, 10, map.height-40);
+        ctx.fillText(`swipe right to replay`, 10, map.height-20);
+        ctx.fillText(`clique ici pour quitter`, map.width-140, map.height-40);
+        ctx.fillText(`click here to quite`, map.width-140, map.height-20);
+        ctx.font = '20px Arial';
+        ctx.fillText(`>>`, map.width/2, map.height-160);
     } else {
-        context.font = '20px Arial';
-        context.fillText(`presse sur S pour quitter`, map.width-230, map.height-40);
-        context.fillText(`press on S to quite`, map.width-230, map.height-20);
-        context.fillText(`clique sur R pour rejouer`, 20, map.height-40);
-        context.fillText(`click on R to replay`, 20, map.height-20);
-        context.fillText(`presse Z pour sauter`, map.width/2-90, map.height-120);
-        context.fillText(`press Z to jump`, map.width/2-70, map.height-140);
-        context.font = '20px FontAwesome';
-        context.fillText('\uf062', map.width/2-10, map.height-70);
+        ctx.font = '20px Arial';
+        ctx.fillText(`presse sur S pour quitter`, map.width-230, map.height-40);
+        ctx.fillText(`press on S to quite`, map.width-230, map.height-20);
+        ctx.fillText(`clique sur R pour rejouer`, 20, map.height-40);
+        ctx.fillText(`click on R to replay`, 20, map.height-20);
+        ctx.fillText(`presse Z pour sauter`, map.width/2-90, map.height-120);
+        ctx.fillText(`press Z to jump`, map.width/2-70, map.height-140);
+        ctx.font = '20px FontAwesome';
+        ctx.fillText('\uf062', map.width/2-10, map.height-70);
     }
     if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
-    context.font = '20px Candal';
-    context.fillStyle = 'red';
-    context.fillText(`GAME OVER`, map.width/2-50, map.height/2);
-    context.font = '10px Candal';
-    context.fillText(`${theName} highscore:${theScore}`, map.width-120, 30);
-    context.fillStyle = 'skyblue';
-    context.fillText(`${sName}  highscore:${sScore}`, map.width-120, 40);
-    context.fillText(`${tName}  highscore:${tScore}`, map.width-120, 50);
+    ctx.font = '20px Candal';
+    ctx.fillStyle = 'red';
+    ctx.fillText(`GAME OVER`, map.width/2-50, map.height/2);
+    ctx.font = '10px Candal';
+    ctx.fillText(`${theName} highscore:${theScore}`, map.width-120, 30);
+    ctx.fillStyle = 'skyblue';
+    ctx.fillText(`${sName}  highscore:${sScore}`, map.width-120, 40);
+    ctx.fillText(`${tName}  highscore:${tScore}`, map.width-120, 50);
 }   else {
-    context.font = '30px Candal';
-    context.fillStyle = 'red';
-    context.fillText(`GAME OVER`, map.width/2-90, map.height/2);
-    context.font = '20px Candal';
+    ctx.font = '30px Candal';
+    ctx.fillStyle = 'red';
+    ctx.fillText(`GAME OVER`, map.width/2-90, map.height/2);
+    ctx.font = '20px Candal';
     drawHighScore();
-    context.fillStyle = 'skyblue';
+    ctx.fillStyle = 'skyblue';
     secondScore();
     thirdScore();
 }
@@ -366,10 +367,10 @@ checkAndInsertScore();
     cancelAnimationFrame(animationFrame);
     console.log("scoreCount", scoreCount);
     map.addEventListener('click', handleQuitClick);
-      context.fillStyle = 'white';
+      ctx.fillStyle = 'white';
 
-    context.font = '20px Arial';
-    context.fillText(`Meilleur score : ${theScore}`, map.width / 2 - 100, map.height / 2 + 80);
+    ctx.font = '20px Arial';
+    ctx.fillText(`Meilleur score : ${theScore}`, map.width / 2 - 100, map.height / 2 + 80);
 }
 function handleQuitClick(event) {
     const rect = map.getBoundingClientRect();
@@ -385,17 +386,17 @@ function handleQuitClick(event) {
     }
 }
 function score() {
-        context.fillStyle = 'white';
+        ctx.fillStyle = 'white';
         const userAgent = window.navigator.userAgent;
     if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
-        context.font = '10px Arial';
-    context.fillText(`score: ${scoreCount}`, 10, 30);
-    context.fillText(`record: ${monScore}`, 10, 40);
+        ctx.font = '10px Arial';
+    ctx.fillText(`score: ${scoreCount}`, 10, 30);
+    ctx.fillText(`record: ${monScore}`, 10, 40);
     } else {
-        context.fillStyle = 'white';
-        context.font = '20px Arial';
-    context.fillText(`score: ${scoreCount}`, 20, 30);
-    context.fillText(`record: ${monScore}`, 20, 50);
+        ctx.fillStyle = 'white';
+        ctx.font = '20px Arial';
+    ctx.fillText(`score: ${scoreCount}`, 20, 30);
+    ctx.fillText(`record: ${monScore}`, 20, 50);
     }
 }
 async function saveScore() {
@@ -500,25 +501,30 @@ function initializeObstacles() {
     upstacle();
 }
 function thesun() {
-    context.font = "30px FontAwesome";
-    context.fillStyle = sun.color;
-    context.fillText(sun.icon, sun.x, sun.y);
+    ctx.font = "30px FontAwesome";
+    ctx.fillStyle = sun.color;
+    ctx.fillText(sun.icon, sun.x, sun.y);
     sun.x += sun.vitesseX;
     if (sun.x >= map.width) {
         sun.x = -30;
     }
 }
 
+let decorWidth = (/Mobi|Android|iPhone|iPod/i.test(userAgent)) ? map.width : 1720;
+let decorX = decorWidth;
+let decorHieght = (/Mobi|Android|iPhone|iPod/i.test(userAgent)) ? map.height / 2.8 : 360;
+let decorpositionY = (/Mobi|Android|iPhone|iPod/i.test(userAgent)) ? 100 : 0;
+
 let decorations = [
-    { x: 0, y: 0, width: 1720, height: 360, image: "c7d972cb5aab0dabfb45aff0cf07a07d.png", velocityX: decorvelocityX },
-    { x: 1720, y: 0, width: 1720, height: 360, image: "c7d972cb5aab0dabfb45aff0cf07a07d.png", velocityX: decorvelocityX }
+    { x: 0, y: decorpositionY, width: decorWidth, height: decorHieght, image: "c7d972cb5aab0dabfb45aff0cf07a07d.png", velocityX: decorvelocityX },
+    { x: decorX, y: decorpositionY, width: decorWidth, height: decorHieght, image: "c7d972cb5aab0dabfb45aff0cf07a07d.png", velocityX: decorvelocityX }
 ];
 
 function drawdecor() {
     decorations.forEach((decor) => {
         const img = new Image();
         img.src = decor.image;
-        context.drawImage(img, decor.x, decor.y, decor.width, decor.height);
+        ctx.drawImage(img, decor.x, decor.y, decor.width, decor.height);
     });
 }
 
@@ -542,27 +548,47 @@ function movecar() {
     })
 }
 
+let trafficLightObj = {
+    x: 1000,
+    y: upstacleP,
+    width: 90,
+    height: 120,
+    image: "pngtree-traffic-lights-clipart-design-png-image_5766018.png"
+};
+
+function trafficLight() {
+    const img = new Image();
+    img.src = trafficLightObj.image;
+    ctx.drawImage(img, trafficLightObj.x, trafficLightObj.y, trafficLightObj.width, trafficLightObj.height);
+
+    // Déplacement
+    trafficLightObj.x -= velocityX;
+    if (trafficLightObj.x <= -trafficLightObj.width) {
+        trafficLightObj.x = map.width;
+    }
+}
+
 function blaze() {
-    context.font = "20px Aial";
+    ctx.font = "20px Aial";
     const userAgent = window.navigator.userAgent;
     if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
-        context.font = "10px Aial";
+        ctx.font = "10px Aial";
     }
-    context.fillStyle = monblaze.color;
-    context.fillText(`@makilaaz0`, monblaze.x, monblaze.y);
+    ctx.fillStyle = monblaze.color;
+    ctx.fillText(`@makilaaz0`, monblaze.x, monblaze.y);
     monblaze.x -= monblaze.vitesseX;
     if (monblaze.x <= 0-120) {
         monblaze.x = map.width;
     }
 }
 function aka() {
-    context.font = "20px Aial";
+    ctx.font = "20px Aial";
     const userAgent = window.navigator.userAgent;
     if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
-        context.font = "10px Aial";
+        ctx.font = "10px Aial";
     }
-    context.fillStyle = mervie.color;
-    context.fillText(`Mervie`, mervie.x, mervie.y);
+    ctx.fillStyle = mervie.color;
+    ctx.fillText(`Mervie`, mervie.x, mervie.y);
     mervie.x -= mervie.vitesseX;
     if (mervie.x <= 0-120) {
         mervie.x = map.width;
@@ -602,6 +628,7 @@ function animate() {
     score();
     moveobstacle();
     moveobjects();
+    trafficLight();
     drawObstacles();
     collision();
     rotationdetection();
@@ -612,14 +639,14 @@ function animate() {
 function drawDecor13() {
     const decor13 = trucs.find(truc => truc.icon === "\uf5e4");
     if (decor13) {
-        context.font = "30px FontAwesome";
-        context.fillStyle = decor13.color;
-        context.fillText(decor13.icon, decor13.x, decor13.y);
+        ctx.font = "30px FontAwesome";
+        ctx.fillStyle = decor13.color;
+        ctx.fillText(decor13.icon, decor13.x, decor13.y);
     }
 }
 function reloadAnimation() {
     cancelAnimationFrame(animation);
-    context.clearRect(0, 0, map.width, map.height);
+    ctx.clearRect(0, 0, map.width, map.height);
     Objects = [];
     frameCount = 0;
     scoreCount = 0;
