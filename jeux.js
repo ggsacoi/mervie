@@ -13,7 +13,7 @@ if(window.innerWidth <= 1199) {
 }
 const nameInput = document.createElement("input");
     nameInput.type = 'text';
-    nameInput.placeholder = 'entrez votre nom ici';
+    nameInput.placeholder = 'enter your name';
     nameInput.maxLength = 10;
     nameInput.style.fontSize = '20px';
     nameInput.style.backgroundColor = 'black';
@@ -39,7 +39,7 @@ nameInput.addEventListener('keydown', async (event) => {
         event.preventDefault();
         const nom = nameInput.value.trim();
 
-        if (nom.length === 0) {
+        if (nom.length  === 0 || !/^[a-zA-Z0-9]+$/.test(nom)) {
             return alert("Veuillez entrer un nom valide !");
         }
         nameInput.style.display = 'none';
@@ -347,8 +347,9 @@ if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
     ctx.fillStyle = 'red';
     ctx.fillText(`GAME OVER`, map.width/2-90, map.height/2);
     ctx.font = '20px Candal';
+    ctx.fillStyle = 'black';
     drawHighScore();
-    ctx.fillStyle = 'skyblue';
+    ctx.fillStyle = 'blue';
     secondScore();
     thirdScore();
 }
