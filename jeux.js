@@ -338,8 +338,9 @@ if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
     ctx.fillStyle = 'red';
     ctx.fillText(`GAME OVER`, map.width/2-50, map.height/2);
     ctx.font = '10px Candal';
+    ctx.fillStyle = 'black';
     ctx.fillText(`${theName} highscore:${theScore}`, map.width-120, 30);
-    ctx.fillStyle = 'skyblue';
+    ctx.fillStyle = 'blue';
     ctx.fillText(`${sName}  highscore:${sScore}`, map.width-120, 40);
     ctx.fillText(`${tName}  highscore:${tScore}`, map.width-120, 50);
 }   else {
