@@ -160,7 +160,7 @@ function randomXPosition(options) {
 }
 function space() {
     map;
-    ctx.fillStyle = "gray";
+    ctx.fillStyle = "#222";
     ctx.fillRect(0, 0, map.width, map.height);
 }
 function ground() {
@@ -170,7 +170,7 @@ function ground() {
         ground.height = window.innerWidth;
      }
     ground.width = 2;
-    ground.fillStyle = 'black';
+    ground.fillStyle = 'white';
     ground.fillRect(0, map.height/2+100, ground.height, ground.width);
 };
 function mainobject() {
@@ -198,7 +198,7 @@ function rood() {
         roodup.height = window.innerWidth;
      }
     roodup.width = 1;
-    roodup.fillStyle = 'black';
+    roodup.fillStyle = 'white';
     roodup.fillRect(0, map.height/2+30, roodup.height, roodup.width);
     const rood = map.getContext('2d');
     rood.height = map.width;
@@ -206,7 +206,7 @@ function rood() {
         rood.height = window.innerWidth;
      }
     rood.width = 1;
-    rood.fillStyle = 'black';
+    rood.fillStyle = 'white';
     rood.fillRect(0, map.height/2+10, rood.height, rood.width);
 }
 function moveobstacle() {
@@ -554,20 +554,20 @@ let trafficLightObj = {
     y: upstacleP,
     width: 90,
     height: 120,
-    image: "traffic-light-11533030354sqedsec2nj (1).png"
+    image: "pngtree-traffic-lights-clipart-design-png-image_5766018.png"
 }
 
-function trafficLight() {
-    const img = new Image();
-    img.src = trafficLightObj.image;
-    ctx.drawImage(img, trafficLightObj.x, trafficLightObj.y, trafficLightObj.width, trafficLightObj.height);
+// function trafficLight() {
+//     const img = new Image();
+//     img.src = trafficLightObj.image;
+//     ctx.drawImage(img, trafficLightObj.x, trafficLightObj.y, trafficLightObj.width, trafficLightObj.height);
 
-    // Déplacement
-    trafficLightObj.x -= velocityX;
-    if (trafficLightObj.x <= -trafficLightObj.width) {
-        trafficLightObj.x = map.width;
-    }
-}
+//     // Déplacement
+//     trafficLightObj.x -= velocityX;
+//     if (trafficLightObj.x <= -trafficLightObj.width) {
+//         trafficLightObj.x = map.width;
+//     }
+// }
 
 function blaze() {
     ctx.font = "20px Aial";
@@ -629,7 +629,7 @@ function animate() {
     score();
     moveobstacle();
     moveobjects();
-    trafficLight();
+    // trafficLight();
     drawObstacles();
     collision();
     rotationdetection();
