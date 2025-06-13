@@ -139,8 +139,8 @@ let building = {
 let sun = {
     x: map.width/4,
     y: map.height/8,
-    color: "skyblue",
-    icon: "\uf6c3",
+    color: "yellow",
+    icon: "\uf185",
     vitesseX: 0.004
 };
 let monblaze = {
@@ -160,7 +160,7 @@ function randomXPosition(options) {
 }
 function space() {
     map;
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "gray";
     ctx.fillRect(0, 0, map.width, map.height);
 }
 function ground() {
@@ -170,7 +170,7 @@ function ground() {
         ground.height = window.innerWidth;
      }
     ground.width = 2;
-    ground.fillStyle = 'white';
+    ground.fillStyle = 'black';
     ground.fillRect(0, map.height/2+100, ground.height, ground.width);
 };
 function mainobject() {
@@ -189,7 +189,7 @@ function upstacle() {
     Objects.push({ height: 30, width: 30, x: randomXPosition([550, 620]), y: upstacleP, color: 'purple', val: 7000});
 }
 function decor1() {
-    trucs.push({x: map.width, y: map.height/2+20, color: "gray", icon: "\uf5e4", velocityX: carvelocityX});
+    trucs.push({x: map.width, y: map.height/2+20, color: "black", icon: "\uf5e4", velocityX: carvelocityX});
 }
 function rood() {
     const roodup = map.getContext('2d');
@@ -198,7 +198,7 @@ function rood() {
         roodup.height = window.innerWidth;
      }
     roodup.width = 1;
-    roodup.fillStyle = 'white';
+    roodup.fillStyle = 'black';
     roodup.fillRect(0, map.height/2+30, roodup.height, roodup.width);
     const rood = map.getContext('2d');
     rood.height = map.width;
@@ -206,7 +206,7 @@ function rood() {
         rood.height = window.innerWidth;
      }
     rood.width = 1;
-    rood.fillStyle = 'white';
+    rood.fillStyle = 'black';
     rood.fillRect(0, map.height/2+10, rood.height, rood.width);
 }
 function moveobstacle() {
@@ -510,14 +510,13 @@ function themoon() {
     }
 }
 
-let decorWidth = (/Mobi|Android|iPhone|iPod/i.test(userAgent)) ? map.width : 1720;
+let decorWidth = (/Mobi|Android|iPhone|iPod/i.test(userAgent)) ? 1778 : 1720;
 let decorX = decorWidth;
-let decorHieght = (/Mobi|Android|iPhone|iPod/i.test(userAgent)) ? map.height / 2.8 : 360;
-let decorpositionY = (/Mobi|Android|iPhone|iPod/i.test(userAgent)) ? 100 : 0;
+let decorHieght = (/Mobi|Android|iPhone|iPod/i.test(userAgent)) ? map.height / 2 : 360;
 
 let decorations = [
-    { x: 0, y: decorpositionY, width: decorWidth, height: decorHieght, image: "abstract-night-city-building-scene-600nw-2076615607.webp", velocityX: decorvelocityX },
-    { x: decorX, y: decorpositionY, width: decorWidth, height: decorHieght, image: "abstract-night-city-building-scene-600nw-2076615607.webp", velocityX: decorvelocityX }
+    { x: 0, y: 0, width: decorWidth, height: decorHieght, image: "751813_poster.jpg", velocityX: decorvelocityX },
+    { x: decorX, y: 0, width: decorWidth, height: decorHieght, image: "751813_poster.jpg", velocityX: decorvelocityX }
 ];
 
 function drawdecor() {
@@ -539,7 +538,7 @@ function movedecor() {
 
 function movecar() {
     trucs.forEach((truc) =>{
-        if(truc.color === 'gray') {
+        if(truc.color === 'black') {
             truc.x -= truc.velocityX;
     if (truc.x <= -50) {
         truc.x = map.width;
@@ -553,8 +552,8 @@ let trafficLightObj = {
     y: upstacleP,
     width: 90,
     height: 120,
-    image: "pngtree-traffic-lights-clipart-design-png-image_5766018.png"
-};
+    image: "traffic-light-11533030354sqedsec2nj (1).png"
+}
 
 function trafficLight() {
     const img = new Image();
