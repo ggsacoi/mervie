@@ -525,7 +525,9 @@ function drawdecor() {
     decorations.forEach((decor) => {
         const img = new Image();
         img.src = decor.image;
+        if(img.complete) {
         ctx.drawImage(img, decor.x, decor.y, decor.width, decor.height);
+    }
     });
 }
 
