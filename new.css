@@ -203,6 +203,9 @@
     transition: background 0.3s ease-in-out;
     border-radius: 10px;
 }
+#lemail::placeholder {
+    color: black;
+}
 
 /*categorie*/
 #Categorie {
