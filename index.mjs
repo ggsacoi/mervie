@@ -26,31 +26,27 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Initialise OpenAI proprement
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY});
+  apiKey: process.env.OPENAI_API_KEY
+});
 
 // Route principale API
+app.use(express.json());
+
 app.post('/api/ask', async (req, res) => {
   const { prompt } = req.body;
-
   if (!prompt) {
-    return res.status(400).json({ error: '❗ Aucun prompt fourni.' });
+    return res.status(400).json({ response: "Prompt manquant." });
   }
-
   try {
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4',
-      messages: [{ role: 'user', content: prompt }],
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: prompt }],
     });
-
-    res.json({ response: completion.choices[0].message.content });
-
-  } catch (err) {
-    console.error('❌ Erreur OpenAI:', JSON.stringify(err, null, 2));
-    if (err.response) {
-      res.status(err.response.status).json({ error: err.response.data });
-    } else {
-      res.status(500).json({ error: 'Erreur interne serveur' });
-    }
+    const response = completion.choices[0].message.content;
+    res.json({ response });
+  } catch (error) {
+    console.error("Erreur OpenAI :", error);
+    res.status(500).json({ response: "Erreur serveur OpenAI." });
   }
 });
 
