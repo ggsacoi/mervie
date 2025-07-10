@@ -39,7 +39,7 @@ nameInput.addEventListener('keydown', async (event) => {
         event.preventDefault();
         const nom = nameInput.value.trim();
 
-        if (nom.length  < 3) {
+        if (nom.length  === 0 || !/^[a-zA-Z0-9]+$/.test(nom)) {
             return alert("Veuillez entrer un nom valide !");
         }
         nameInput.style.display = 'none';
@@ -354,136 +354,10 @@ if (/Mobi|Android|iPhone|iPad|iPod/i.test(userAgent)) {
     secondScore();
     thirdScore();
 }
-function showWinnerBox() {
-    const box = document.createElement("div");
-    box.style.padding = "2rem";
-    box.style.backgroundColor = "white";
-    box.style.borderRadius = "1rem";
-    box.style.display = "flex";
-    box.style.top = "10px";
-    box.style.zIndex = "6";
-    box.style.alignItems = "center";
-    box.style.position = "fixed";
-    box.style.justifyContent = "center";
-    box.style.flexDirection = "column";
-    box.style.left = '50%';
-    box.style.transform = 'translate(-50%, -120%)';
-    box.style.transition = "transform 0.2s linear 1s, opacity 0.6s";
-    box.style.boxShadow = "0 10px 15px rgba(0, 0, 0, 0.2)";
-    box.style.backgroundColor = "rgba(255, 255, 0)";
-    const title = document.createElement("h2");
-    title.style.display = "flex";
-    const name = sessionStorage.getItem('name');
-    title.textContent = name;
-    const text = document.createElement("h3");
-    text.innerHTML = "wrote your winner message !<br>ecris ton message de vainqueur !";
-    const input = document.createElement("input");
-    input.type = "text";
-    input.style.marginTop = "1rem";
-    input.style.fontSize = "1.5rem";
-    input.style.border = "2px solid black";
-    const button = document.createElement("button");
-    button.textContent = "enter";
-    button.style.margin = "10px";
-    button.style.color = "white";
-    button.className ="btn-alpha";
-    box.appendChild(title);
-    box.appendChild(text);
-    box.appendChild(input);
-    box.appendChild(button);
-    document.body.appendChild(box);
-    document.body.style.overflow = "hidden";
-    // Ajoute ici le code pour désactiver les interactions si besoin
-    setTimeout(() => {
-        box.style.transform = "translate(-50%)";
-        box.style.opacity = "1";
-    }, 50);
-
-     button.addEventListener("click", async () => {
-        const message = input.value.trim();
-        if (message.length < 5) {
-            alert("pour sauvegarder, veuillez entrer un message !\nto save, please enter a message !");
-            return;
-        }
-        try {
-            const { data, error } = await supabase
-                .from('text')
-                .update({ newtext: message })
-                .eq('id', 1);
-            if (error) throw error;
-            console.log("Message mis à jour :", data);
-            saveScore();
-            box.remove();
-            location.reload();
-            document.body.style.overflow = "";
-        } catch (err) {
-            console.error("Erreur lors de la mise à jour du message :", err);
-        }
-    });
-}
 if (scoreCount > theScore) {
-    showWinnerBox();
+    alert(`Mervie: dinguerie ta le nouveau record ✅`);
+    saveScore();
 }
-async function thebox() {
-    const boxe = document.createElement("div");
-    boxe.style.padding = "2rem";
-    boxe.style.backgroundColor = "white";
-    boxe.style.borderRadius = "1rem";
-    boxe.style.display = "flex";
-    boxe.style.bottom = "10px";
-    boxe.style.zIndex = "6";
-    boxe.style.alignItems = "center";
-    boxe.style.position = "fixed";
-    boxe.style.justifyContent = "center";
-    boxe.style.flexDirection = "column";
-    boxe.style.left = '50%';
-    boxe.style.transform = 'translate(-50%, +120%)';
-    boxe.style.transition = "transform 0.2s linear 1s, opacity 0.6s";
-    boxe.style.boxShadow = "0 10px 15px rgba(0, 0, 0, 0.2)";
-    boxe.style.backgroundColor = "rgba(255, 255, 0)";
-    const title = document.createElement("h2");
-    title.textContent = theName;
-    wintext = document.createElement("h3");
-    try {
-        const { data: textData, error: textError } = await supabase
-            .from('text')
-            .select('newtext')
-            .eq('id', 1)
-            .single();
-        if (textError) throw textError;
-        thetext = textData.newtext || "Aucun message trouvé";
-        wintext.textContent = thetext;
-    } catch (err) {
-        console.error("Erreur lors de la récupération du message :", err);
-        wintext.textContent = "Erreur de récupération";
-    }
-    // ... suite du code, tu peux utiliser thetext ici ...
-    boxe.appendChild(title);
-    boxe.appendChild(wintext);
-    // ...
-    // boxe.appendChild(thetext);
-    document.body.appendChild(boxe);
-    document.body.style.overflow = "hidden";
-    // Ajoute ici le code pour désactiver les interactions si besoin
-    setTimeout(() => {
-        boxe.style.transform = "translate(-50%)";
-        boxe.style.opacity = "1";
-    }, 50);
-    setTimeout(() => {
-        boxe.style.transition = "transform 0.2s opacity 0.6s linear";
-    boxe.style.opacity = "0";
-    setTimeout(() => {
-        boxe.remove();
-        document.body.style.overflow = "";
-    }, 600);
-    }, 10000);
-}
-setTimeout(() => {
-    thebox();
-}, 10000);
-setInterval(() => {
-    thebox();
-}, 300000);
 let savedHighScore = parseInt(sessionStorage.getItem('highestscore')) || 0;
 if (scoreCount > savedHighScore) {
     sessionStorage.setItem('highestscore', scoreCount);
@@ -651,9 +525,7 @@ function drawdecor() {
     decorations.forEach((decor) => {
         const img = new Image();
         img.src = decor.image;
-        if(img.complete) {
         ctx.drawImage(img, decor.x, decor.y, decor.width, decor.height);
-    }
     });
 }
 
