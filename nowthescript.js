@@ -69,3 +69,27 @@ window.setTimeout(()=> {
   }
 });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.style.visibility = "hidden";
+    const images = Array.from(document.images);
+    let loaded = 0;
+    if (images.length === 0) finishLoading();
+    images.forEach(img => {
+        if (img.complete) {
+            loaded++;
+            if (loaded === images.length) finishLoading();
+        } else {
+            img.addEventListener('load', check);
+            img.addEventListener('error', check);
+        }
+    });
+    function check() {
+        loaded++;
+        if (loaded === images.length) finishLoading();
+    }
+    function finishLoading() {
+        document.body.style.visibility = "visible";
+    }
+
+});
