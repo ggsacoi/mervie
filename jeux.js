@@ -2,7 +2,6 @@ const launch = document.querySelector(".launch");
 const map = document.getElementById("game");
 const SUPABASE_URL = "https://wlmvwbustnfmezngrvhu.supabase.co";  // Remplace par ton URL
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsbXZ3YnVzdG5mbWV6bmdydmh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU1NTMxMTcsImV4cCI6MjA2MTEyOTExN30.4Ox59Y93pcjlV0RTnpANlDInwJe8R9HqdS12a07qfWs";
-const userAgent = window.navigator.userAgent;
 
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 map.height = 720;

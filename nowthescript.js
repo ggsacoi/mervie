@@ -12,10 +12,13 @@ sending.addEventListener("click",(e)=>{
 
     const Message = document.getElementById("message");
     const email = document.getElementById("lemail");
+    const nom = document.getElementById("nom");
+    const prenom = document.getElementById("prenom");
+    const telephone = document.getElementById("telephone");
 
-    let send =`tiens: ${Message.value} + ${email.value}`;
+    let send = `Message: ${Message.value}\nEmail: ${email.value} \nNom: ${nom.value} \nPrénom: ${prenom.value} \nTéléphone: ${telephone.value}`;
 
-    emailjs.send("service_tww5dwg", "template_vm8to0e", {
+    emailjs.send("service_ov2rcvd", "template_vm8to0e", {
       from_name: email.value,
       to_name: "Makilaaz0",
       email: email.value,

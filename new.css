@@ -204,7 +204,7 @@
     border-radius: 10px;
 }
 #lemail::placeholder {
-    color: black;
+    color: gray;
 }
 
 /*categorie*/
@@ -508,16 +508,18 @@
     margin-top: -1.2rem;
 }
 
-.form-container a {
-    font-size: 1.3rem;
+.form-container .nom {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
 }
 
-a {
+/* .showcase-container*/ a {
     padding: 0px 15px 0px 15px;
     color: white;
 }
 
-a:hover {
+/*.showcase-container */ a:hover {
     background-color: white;
     border-radius: 3px;
     color: black;
@@ -949,8 +951,3 @@ a:hover {
       transform: rotate(1turn);
     }
   }
-
-  input::placeholder {
-    color: white;
-    opacity: 1;
-}
